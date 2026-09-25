@@ -1,7 +1,7 @@
 {
   "name": "@danielhaim/waf-tools",
   "version": "1.0.0",
-  "description": "WAF Tools is a WAF rulesets generator with CWE references, exploit indicators, and custom detection patterns for security reviews and auditing.",
+  "description": "WAF Tools is a ruleset builder with CWE references, exploit indicators, and custom detection patterns for security reviews and auditing.",
   "private": true,
   "type": "module",
   "engines": {
