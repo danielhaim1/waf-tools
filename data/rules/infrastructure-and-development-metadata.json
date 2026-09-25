@@ -1,0 +1,637 @@
+{
+  "schema_version": 1,
+  "category": {
+    "id": "infrastructure-and-development-metadata",
+    "name": "Infrastructure and Development Metadata",
+    "short_name": "Infrastructure and Development Metadata",
+    "description": "Detection rules for Infrastructure and Development Metadata."
+  },
+  "rules": [
+    {
+      "id": "infrastructure-and-development-metadata-terraform-terraform-path",
+      "name": "Terraform Path",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/terraform",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "terraform"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "generic",
+        "infrastructure",
+        "metadata",
+        "terraform"
+      ],
+      "notes": "Terraform files or directories that may expose infrastructure definitions.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "infrastructure-and-development-metadata-terraform-hidden-terraform-path",
+      "name": "Terraform Hidden File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.terraform",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "terraform"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "generic",
+        "infrastructure",
+        "metadata",
+        "terraform"
+      ],
+      "notes": "Terraform working directory containing provider plugins and cached metadata.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "infrastructure-and-development-metadata-docker-dockerfile-path",
+      "name": "Docker Dockerfile Path",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/Dockerfile",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "docker"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "docker",
+        "generic",
+        "infrastructure",
+        "metadata"
+      ],
+      "notes": "Docker image build definition revealing application architecture and build process.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "infrastructure-and-development-metadata-docker-compose-docker-compose-path",
+      "name": "Docker Compose Path",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/docker-compose",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "docker-compose"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "docker-compose",
+        "generic",
+        "infrastructure",
+        "metadata"
+      ],
+      "notes": "Docker Compose configuration variants defining application services and networking.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "infrastructure-and-development-metadata-docker-hidden-docker-path",
+      "name": "Docker Hidden File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.docker",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "docker"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "docker",
+        "generic",
+        "infrastructure",
+        "metadata"
+      ],
+      "notes": "Docker client configuration that may contain registry credentials and authentication tokens.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "infrastructure-and-development-metadata-editorconfig-hidden-editorconfig-path",
+      "name": "EditorConfig Hidden File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.editorconfig",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "editorconfig"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "editorconfig",
+        "generic",
+        "infrastructure",
+        "metadata"
+      ],
+      "notes": "Editor configuration file defining project coding standards.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "infrastructure-and-development-metadata-visual-studio-code-hidden-vscode-path",
+      "name": "Visual Studio Code Hidden Vscode Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.vscode/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "visual-studio-code"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "generic",
+        "infrastructure",
+        "metadata",
+        "visual-studio-code"
+      ],
+      "notes": "Visual Studio Code workspace settings and project configuration.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "infrastructure-and-development-metadata-jetbrains-ides-hidden-idea-path",
+      "name": "JetBrains IDEs Hidden Idea File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.idea",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "jetbrains-ides"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "generic",
+        "infrastructure",
+        "jetbrains-ides",
+        "metadata"
+      ],
+      "notes": "JetBrains IDE project metadata and workspace configuration.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "infrastructure-and-development-metadata-hidden-history-path",
+      "name": "Hidden History File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.history",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "generic",
+        "infrastructure",
+        "metadata"
+      ],
+      "notes": "Editor or local file-history directory that may contain previous versions of sensitive files.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "infrastructure-and-development-metadata-windows-thumbs-db-path",
+      "name": "Windows Thumbs Db File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/Thumbs.db",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "microsoft-windows"
+        ],
+        "operating_systems": [
+          "windows"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "generic",
+        "infrastructure",
+        "metadata",
+        "microsoft-windows"
+      ],
+      "notes": "Windows Explorer thumbnail cache file that may reveal directory contents.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "infrastructure-and-development-metadata-windows-desktop-ini-path",
+      "name": "Windows Desktop INI File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/desktop.ini",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "microsoft-windows"
+        ],
+        "operating_systems": [
+          "windows"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "generic",
+        "infrastructure",
+        "metadata",
+        "microsoft-windows"
+      ],
+      "notes": "Windows Explorer folder configuration file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    }
+  ]
+}

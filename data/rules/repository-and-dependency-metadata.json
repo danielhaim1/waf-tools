@@ -1,0 +1,475 @@
+{
+  "schema_version": 1,
+  "category": {
+    "id": "repository-and-dependency-metadata",
+    "name": "Repository and Dependency Metadata",
+    "short_name": "Repository and Dependency Metadata",
+    "description": "Detection rules for Repository and Dependency Metadata."
+  },
+  "rules": [
+    {
+      "id": "repository-and-dependency-metadata-git-hidden-git-path",
+      "name": "Git Hidden File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.git",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "git"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "dependency",
+        "generic",
+        "git",
+        "metadata",
+        "repository"
+      ],
+      "notes": "Git repository metadata and hidden files that may expose source code, commit history, or repository contents.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "repository-and-dependency-metadata-apache-subversion-hidden-svn-path",
+      "name": "Apache Subversion Hidden Svn File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.svn",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "apache-subversion"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "apache"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "apache",
+        "apache-subversion",
+        "dependency",
+        "metadata",
+        "repository"
+      ],
+      "notes": "Subversion repository metadata that may expose repository contents and revision history.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "repository-and-dependency-metadata-composer-composer-path",
+      "name": "Composer File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/composer.",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "composer"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "composer",
+        "dependency",
+        "generic",
+        "metadata",
+        "repository"
+      ],
+      "notes": "Composer manifests, lock files, and related dependency metadata.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "repository-and-dependency-metadata-bun-bun-lock-path",
+      "name": "Bun Lock File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/bun.lock",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "bun"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "bun",
+        "dependency",
+        "generic",
+        "metadata",
+        "repository"
+      ],
+      "notes": "Bun dependency lock file exposing exact package versions.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "repository-and-dependency-metadata-npm-npm-shrinkwrap-json-path",
+      "name": "npm Shrinkwrap JSON File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/npm-shrinkwrap.json",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "npm"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "dependency",
+        "generic",
+        "metadata",
+        "npm",
+        "repository"
+      ],
+      "notes": "npm shrinkwrap file exposing pinned dependency versions.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "repository-and-dependency-metadata-poetry-poetry-lock-path",
+      "name": "Poetry Lock File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/poetry.lock",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "poetry"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "dependency",
+        "generic",
+        "metadata",
+        "poetry",
+        "repository"
+      ],
+      "notes": "Poetry dependency lock file exposing exact Python package versions.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "repository-and-dependency-metadata-pipenv-pipfile-path",
+      "name": "Pipenv Pipfile Path",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/Pipfile",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "pipenv"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "dependency",
+        "generic",
+        "metadata",
+        "pipenv",
+        "repository"
+      ],
+      "notes": "Pipenv dependency manifest describing project packages.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "repository-and-dependency-metadata-pip-pip-conf-path",
+      "name": "pip Conf File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/pip.conf",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "pip"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "dependency",
+        "generic",
+        "metadata",
+        "pip",
+        "repository"
+      ],
+      "notes": "pip configuration file that may contain private repository URLs or authentication credentials.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    }
+  ]
+}

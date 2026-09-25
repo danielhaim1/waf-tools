@@ -1,0 +1,242 @@
+{
+  "schema_version": 1,
+  "category": {
+    "id": "crlf-injection",
+    "name": "CRLF Injection",
+    "short_name": "CRLF Injection",
+    "description": "Detection rules for CRLF Injection."
+  },
+  "rules": [
+    {
+      "id": "crlf-carriage-return-line-feed",
+      "name": "CRLF Sequence",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "%0d%0a",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic-http"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-113"
+        ]
+      },
+      "tags": [
+        "crlf",
+        "encoded",
+        "generic",
+        "generic-http",
+        "http-response-splitting"
+      ],
+      "notes": "URL-encoded CRLF (`\\r\\n`) sequence used in header injection attacks.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "crlf-line-feed-carriage-return",
+      "name": "LFCR Sequence",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "%0a%0d",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic-http"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-113"
+        ]
+      },
+      "tags": [
+        "crlf",
+        "encoded",
+        "generic",
+        "generic-http",
+        "http-response-splitting"
+      ],
+      "notes": "Alternate URL-encoded CRLF (`\\n\\r`) sequence.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "crlf-set-cookie-header",
+      "name": "URL-Encoded set-cookie Header",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "set-cookie%3a",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic-http"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-113"
+        ]
+      },
+      "tags": [
+        "crlf",
+        "encoded",
+        "generic",
+        "generic-http",
+        "http-response-splitting"
+      ],
+      "notes": "URL-encoded `Set-Cookie:` header used in HTTP response splitting.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "crlf-keyword",
+      "name": "CRLF Injection Keyword",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "crlfinjection",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic-http"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-113"
+        ]
+      },
+      "tags": [
+        "crlf",
+        "generic",
+        "generic-http",
+        "http-response-splitting"
+      ],
+      "notes": "Generic CRLF injection probe observed in automated scanning.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    }
+  ]
+}

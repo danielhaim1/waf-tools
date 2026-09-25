@@ -1,0 +1,1346 @@
+{
+  "schema_version": 1,
+  "category": {
+    "id": "sql-injection",
+    "name": "SQL Injection",
+    "short_name": "SQLi",
+    "description": "Detection rules for SQL Injection."
+  },
+  "rules": [
+    {
+      "id": "sqli-union-select",
+      "name": "UNION SELECT",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "union select",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic-sql"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "database",
+        "generic",
+        "generic-sql",
+        "sqli",
+        "union"
+      ],
+      "notes": "UNION-based SQL injection.",
+      "ui": {
+        "default_selected": true,
+        "recommended": true
+      }
+    },
+    {
+      "id": "sqli-union-select-url-encoded",
+      "name": "Encoded UNION SELECT",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "union%20select",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic-sql"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "encoded",
+        "generic",
+        "generic-sql",
+        "sqli",
+        "union"
+      ],
+      "notes": "URL-encoded UNION-based SQL injection.",
+      "ui": {
+        "default_selected": true,
+        "recommended": true
+      }
+    },
+    {
+      "id": "sqli-union-select-form-encoded",
+      "name": "Form-Encoded UNION SELECT",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "union+select",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic-sql"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "encoded",
+        "generic",
+        "generic-sql",
+        "sqli",
+        "union"
+      ],
+      "notes": "Form-encoded UNION-based SQL injection.",
+      "ui": {
+        "default_selected": true,
+        "recommended": true
+      }
+    },
+    {
+      "id": "sqli-information-schema",
+      "name": "Information Schema Enumeration",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "information_schema",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "mysql"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "enumeration",
+        "generic",
+        "mysql",
+        "sqli"
+      ],
+      "notes": "Database metadata enumeration.",
+      "ui": {
+        "default_selected": true,
+        "recommended": true
+      }
+    },
+    {
+      "id": "sqli-boolean-or-one-equals-one",
+      "name": "Boolean OR 1=1",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "or 1=1",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic-sql"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "authentication-bypass",
+        "boolean",
+        "generic",
+        "generic-sql",
+        "sqli"
+      ],
+      "notes": "Boolean-based SQL injection.",
+      "ui": {
+        "default_selected": true,
+        "recommended": true
+      }
+    },
+    {
+      "id": "sqli-boolean-or-one-equals-one-url-encoded",
+      "name": "Encoded Boolean OR 1=1",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "or%201%3d1",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic-sql"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "boolean",
+        "encoded",
+        "generic",
+        "generic-sql",
+        "sqli"
+      ],
+      "notes": "URL-encoded Boolean-based SQL injection.",
+      "ui": {
+        "default_selected": true,
+        "recommended": true
+      }
+    },
+    {
+      "id": "sqli-auth-bypass-quoted-one",
+      "name": "Quoted Boolean Authentication Bypass",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "' or '1'='1",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic-sql"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "authentication-bypass",
+        "boolean",
+        "generic",
+        "generic-sql",
+        "sqli"
+      ],
+      "notes": "Classic authentication-bypass payload.",
+      "ui": {
+        "default_selected": true,
+        "recommended": true
+      }
+    },
+    {
+      "id": "sqli-auth-bypass-quoted-one-url-encoded",
+      "name": "Encoded Quoted Authentication Bypass",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "%27%20or%20%271%27%3d%271",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic-sql"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "authentication-bypass",
+        "boolean",
+        "encoded",
+        "generic",
+        "generic-sql",
+        "sqli"
+      ],
+      "notes": "URL-encoded authentication-bypass payload.",
+      "ui": {
+        "default_selected": true,
+        "recommended": true
+      }
+    },
+    {
+      "id": "sqli-mysql-sleep",
+      "name": "MySQL SLEEP Delay",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "sleep(",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "mysql"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "generic",
+        "mysql",
+        "sqli",
+        "time-based"
+      ],
+      "notes": "Time-based blind SQL injection.",
+      "ui": {
+        "default_selected": true,
+        "recommended": true
+      }
+    },
+    {
+      "id": "sqli-mysql-benchmark",
+      "name": "MySQL BENCHMARK Delay",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "benchmark(",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "mysql"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "generic",
+        "mysql",
+        "sqli",
+        "time-based"
+      ],
+      "notes": "Benchmark-based time-delay attack.",
+      "ui": {
+        "default_selected": true,
+        "recommended": true
+      }
+    },
+    {
+      "id": "sqli-mssql-waitfor-delay",
+      "name": "SQL Server WAITFOR DELAY",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "waitfor delay",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "microsoft-sql-server"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "generic",
+        "microsoft-sql-server",
+        "mssql",
+        "sqli",
+        "time-based"
+      ],
+      "notes": "SQL Server time-delay attack.",
+      "ui": {
+        "default_selected": true,
+        "recommended": true
+      }
+    },
+    {
+      "id": "sqli-mssql-waitfor-delay-url-encoded",
+      "name": "Encoded SQL Server WAITFOR DELAY",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "waitfor%20delay",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "microsoft-sql-server"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "encoded",
+        "generic",
+        "microsoft-sql-server",
+        "mssql",
+        "sqli",
+        "time-based"
+      ],
+      "notes": "URL-encoded SQL Server time-delay attack.",
+      "ui": {
+        "default_selected": true,
+        "recommended": true
+      }
+    },
+    {
+      "id": "sqli-mssql-waitfor-delay-spaced",
+      "name": "Fully Encoded SQL Server Delay",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "%20waitfor%20delay%20",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "microsoft-sql-server"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "encoded",
+        "generic",
+        "microsoft-sql-server",
+        "mssql",
+        "sqli",
+        "time-based"
+      ],
+      "notes": "Fully URL-encoded SQL Server time-delay payload.",
+      "ui": {
+        "default_selected": true,
+        "recommended": true
+      }
+    },
+    {
+      "id": "sqli-mssql-delay-duration",
+      "name": "SQL Server Delay Duration",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "'0:0:20'",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "microsoft-sql-server"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "generic",
+        "microsoft-sql-server",
+        "mssql",
+        "sqli",
+        "time-based"
+      ],
+      "notes": "Delay duration used in some SQL Server payloads; not independently conclusive.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sqli-mysql-load-file",
+      "name": "MySQL LOAD_FILE",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "load_file(",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "mysql"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-22",
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "file-read",
+        "generic",
+        "mysql",
+        "sqli"
+      ],
+      "notes": "MySQL file-disclosure function.",
+      "ui": {
+        "default_selected": true,
+        "recommended": true
+      }
+    },
+    {
+      "id": "sqli-mysql-into-outfile",
+      "name": "MySQL INTO OUTFILE",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "into outfile",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "mysql"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-434",
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "file-write",
+        "generic",
+        "mysql",
+        "sqli"
+      ],
+      "notes": "SQL file-write operation.",
+      "ui": {
+        "default_selected": true,
+        "recommended": true
+      }
+    },
+    {
+      "id": "sqli-mysql-md5",
+      "name": "MySQL MD5 Probe",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "MD5(",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "high"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "mysql"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "generic",
+        "mysql",
+        "probe",
+        "sqli"
+      ],
+      "notes": "SQL injection verification pattern; may occur in legitimate technical or application input.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sqli-block-comment-after-parenthesis",
+      "name": "SQL Block Comment Sequence",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": ")/*",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic-sql"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "comment",
+        "evasion",
+        "generic",
+        "generic-sql",
+        "sqli"
+      ],
+      "notes": "Closing parenthesis followed by an SQL block comment.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sqli-inline-comment-after-parenthesis",
+      "name": "SQL Inline Comment Sequence",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": ")--",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic-sql"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "comment",
+        "evasion",
+        "generic",
+        "generic-sql",
+        "sqli"
+      ],
+      "notes": "Closing parenthesis followed by an SQL inline comment.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sqli-block-comment-url-encoded",
+      "name": "Encoded SQL Block Comment",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "%20/*",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic-sql"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "comment",
+        "encoded",
+        "evasion",
+        "generic",
+        "generic-sql",
+        "sqli"
+      ],
+      "notes": "URL-encoded space followed by an SQL block comment.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sqli-inline-comment-url-encoded",
+      "name": "Encoded SQL Inline Comment",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "%20--",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic-sql"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "comment",
+        "encoded",
+        "evasion",
+        "generic",
+        "generic-sql",
+        "sqli"
+      ],
+      "notes": "URL-encoded space followed by an SQL inline comment.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sqli-mysql-hash-comment-url-encoded",
+      "name": "Encoded MySQL Hash Comment",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "%20%23",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "mysql"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "comment",
+        "encoded",
+        "generic",
+        "mysql",
+        "sqli"
+      ],
+      "notes": "URL-encoded space followed by a MySQL `#` comment.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sqli-mysql-hash-comment-after-parenthesis",
+      "name": "Encoded MySQL Hash Comment After Parenthesis",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": ")%23",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "mysql"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-89"
+        ]
+      },
+      "tags": [
+        "comment",
+        "encoded",
+        "generic",
+        "mysql",
+        "sqli"
+      ],
+      "notes": "Closing parenthesis followed by a URL-encoded MySQL `#` comment.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    }
+  ]
+}

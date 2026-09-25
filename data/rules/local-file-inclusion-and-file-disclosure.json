@@ -1,0 +1,303 @@
+{
+  "schema_version": 1,
+  "category": {
+    "id": "local-file-inclusion-and-file-disclosure",
+    "name": "Local File Inclusion and File Disclosure",
+    "short_name": "Local File Inclusion and File Disclosure",
+    "description": "Detection rules for Local File Inclusion and File Disclosure."
+  },
+  "rules": [
+    {
+      "id": "local-file-inclusion-and-file-disclosure-linux-etc-passwd-query",
+      "name": "Linux Passwd Path",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "/etc/passwd",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "linux",
+          "unix"
+        ],
+        "operating_systems": [
+          "linux"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-98"
+        ]
+      },
+      "tags": [
+        "file-disclosure",
+        "generic",
+        "linux",
+        "local-file-inclusion",
+        "unix"
+      ],
+      "notes": "Unix password database file commonly targeted during local file inclusion and arbitrary file read attacks.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "local-file-inclusion-and-file-disclosure-linux-2fetc-2fpasswd-url-encoded-query",
+      "name": "Linux Url Encoded %2fetc%2fpasswd",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "%2fetc%2fpasswd",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "linux",
+          "unix"
+        ],
+        "operating_systems": [
+          "linux"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-98"
+        ]
+      },
+      "tags": [
+        "encoded",
+        "file-disclosure",
+        "generic",
+        "linux",
+        "local-file-inclusion",
+        "unix"
+      ],
+      "notes": "URL-encoded `/etc/passwd` path used to bypass basic filtering during file disclosure attacks.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "local-file-inclusion-and-file-disclosure-linux-proc-self-environ-query",
+      "name": "Linux Environ Path",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "/proc/self/environ",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "linux"
+        ],
+        "operating_systems": [
+          "linux"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-98"
+        ]
+      },
+      "tags": [
+        "file-disclosure",
+        "generic",
+        "linux",
+        "local-file-inclusion"
+      ],
+      "notes": "Linux process environment file frequently targeted to disclose environment variables or achieve code execution via LFI.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "local-file-inclusion-and-file-disclosure-windows-boot-ini-query",
+      "name": "Windows Boot.INI",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "boot.ini",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "microsoft-windows"
+        ],
+        "operating_systems": [
+          "windows"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-98"
+        ]
+      },
+      "tags": [
+        "file-disclosure",
+        "generic",
+        "local-file-inclusion",
+        "microsoft-windows"
+      ],
+      "notes": "Windows boot configuration file targeted during arbitrary file disclosure attacks.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "local-file-inclusion-and-file-disclosure-linux-bin-sh-query",
+      "name": "Linux Sh Path",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "/bin/sh",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "linux",
+          "unix"
+        ],
+        "operating_systems": [
+          "linux"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-98"
+        ]
+      },
+      "tags": [
+        "file-disclosure",
+        "generic",
+        "linux",
+        "local-file-inclusion",
+        "unix"
+      ],
+      "notes": "Unix shell path commonly referenced in local file inclusion, command injection, and remote code execution probes.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    }
+  ]
+}

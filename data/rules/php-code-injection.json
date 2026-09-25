@@ -1,0 +1,507 @@
+{
+  "schema_version": 1,
+  "category": {
+    "id": "php-code-injection",
+    "name": "PHP Code Injection",
+    "short_name": "PHP Code Injection",
+    "description": "Detection rules for PHP Code Injection."
+  },
+  "rules": [
+    {
+      "id": "php-code-injection-php-php-query",
+      "name": "PHP <?php",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "<?php",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-94"
+        ]
+      },
+      "tags": [
+        "code-injection",
+        "php"
+      ],
+      "notes": "Raw PHP opening tag indicating attempted PHP code injection.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "php-code-injection-php-3c-3fphp-url-encoded-query",
+      "name": "PHP Url Encoded %3c%3fphp",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "%3c%3fphp",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-94"
+        ]
+      },
+      "tags": [
+        "code-injection",
+        "encoded",
+        "php"
+      ],
+      "notes": "URL-encoded PHP opening tag used to bypass input filtering.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "php-code-injection-php-base64-decode-query",
+      "name": "PHP Base64 Decode(",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "base64_decode(",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-94"
+        ]
+      },
+      "tags": [
+        "code-injection",
+        "php"
+      ],
+      "notes": "PHP function commonly used to decode obfuscated payloads before execution.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "php-code-injection-php-shell-exec-query",
+      "name": "PHP Shell Exec(",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "shell_exec(",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-94"
+        ]
+      },
+      "tags": [
+        "code-injection",
+        "php"
+      ],
+      "notes": "PHP function that executes shell commands and returns their output.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "php-code-injection-php-passthru-query",
+      "name": "PHP Passthru(",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "passthru(",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-94"
+        ]
+      },
+      "tags": [
+        "code-injection",
+        "php"
+      ],
+      "notes": "PHP function that executes operating system commands and outputs the result directly.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "php-code-injection-php-proc-open-query",
+      "name": "PHP Proc Open(",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "proc_open(",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-94"
+        ]
+      },
+      "tags": [
+        "code-injection",
+        "php"
+      ],
+      "notes": "PHP function used to create arbitrary operating system processes.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "php-code-injection-php-popen-query",
+      "name": "PHP Popen(",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "popen(",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-94"
+        ]
+      },
+      "tags": [
+        "code-injection",
+        "php"
+      ],
+      "notes": "PHP function that opens a process pipe for command execution.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "php-code-injection-php-system-query",
+      "name": "PHP System(",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "system(",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-94"
+        ]
+      },
+      "tags": [
+        "code-injection",
+        "php"
+      ],
+      "notes": "PHP function that executes operating system commands.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "php-code-injection-php-exec-query",
+      "name": "PHP Exec(",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "exec(",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-94"
+        ]
+      },
+      "tags": [
+        "code-injection",
+        "php"
+      ],
+      "notes": "PHP function used to execute operating system commands and capture output.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    }
+  ]
+}

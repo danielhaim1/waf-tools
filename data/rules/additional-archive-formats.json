@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "category": {
+    "id": "additional-archive-formats",
+    "name": "Additional Archive Formats",
+    "short_name": "Additional Archive Formats",
+    "description": "Detection rules for Additional Archive Formats."
+  },
+  "rules": [
+    {
+      "id": "additional-archive-formats-tar-path",
+      "name": "TAR File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".tar",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "archive",
+        "artifact",
+        "generic"
+      ],
+      "notes": "TAR archive that may expose application source code, backups, or deployment artifacts. Also matches `.tar.gz`; broad match requiring extension-boundary review.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "additional-archive-formats-gz-path",
+      "name": "GZ File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".gz",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "archive",
+        "artifact",
+        "generic"
+      ],
+      "notes": "Gzip-compressed file that may expose application assets, logs, or backups. Broad match requiring extension-boundary review.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    }
+  ]
+}

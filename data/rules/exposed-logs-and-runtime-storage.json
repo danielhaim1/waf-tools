@@ -1,0 +1,294 @@
+{
+  "schema_version": 1,
+  "category": {
+    "id": "exposed-logs-and-runtime-storage",
+    "name": "Exposed Logs and Runtime Storage",
+    "short_name": "Exposed Logs and Runtime Storage",
+    "description": "Detection rules for Exposed Logs and Runtime Storage."
+  },
+  "rules": [
+    {
+      "id": "exposed-logs-and-runtime-storage-laravel-storage-logs-path",
+      "name": "Laravel Logs Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/storage/logs/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "laravel"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "laravel"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "laravel",
+        "logs",
+        "runtime"
+      ],
+      "notes": "Laravel or application log directory that may expose stack traces, credentials, or sensitive application data.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-logs-and-runtime-storage-linux-var-log-path",
+      "name": "Linux Log Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/var/log/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "linux",
+          "unix"
+        ],
+        "operating_systems": [
+          "linux"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "generic",
+        "linux",
+        "logs",
+        "runtime",
+        "unix"
+      ],
+      "notes": "Standard Unix system log directory containing operating system and service logs.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-logs-and-runtime-storage-logs-path",
+      "name": "Logs Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/logs/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "generic",
+        "logs",
+        "runtime"
+      ],
+      "notes": "Generic application log directory. Broad match requiring review.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-logs-and-runtime-storage-log-path",
+      "name": "Log Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/log/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "generic",
+        "logs",
+        "runtime"
+      ],
+      "notes": "Generic log directory. Broad match requiring review.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-logs-and-runtime-storage-laravel-storage-framework-sessions-path",
+      "name": "Laravel Sessions Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/storage/framework/sessions/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "laravel"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "laravel"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "laravel",
+        "logs",
+        "runtime"
+      ],
+      "notes": "Laravel file-based session storage that may expose authenticated user sessions.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    }
+  ]
+}

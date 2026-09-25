@@ -1,0 +1,204 @@
+{
+  "categories": [
+    {
+      "id": "certificates-and-private-keys",
+      "name": "Certificates and Private Keys",
+      "description": "Detection rules for Certificates and Private Keys.",
+      "group": "configuration",
+      "enabled": true,
+      "order": 1
+    },
+    {
+      "id": "credentials-and-private-key-material",
+      "name": "Credentials and Private-Key Material",
+      "description": "Detection rules for Credentials and Private-Key Material.",
+      "group": "configuration",
+      "enabled": true,
+      "order": 2
+    },
+    {
+      "id": "database-and-configuration-artifacts",
+      "name": "Database and Configuration Artifacts",
+      "description": "Detection rules for Database and Configuration Artifacts.",
+      "group": "configuration",
+      "enabled": true,
+      "order": 3
+    },
+    {
+      "id": "infrastructure-and-development-metadata",
+      "name": "Infrastructure and Development Metadata",
+      "description": "Detection rules for Infrastructure and Development Metadata.",
+      "group": "configuration",
+      "enabled": true,
+      "order": 4
+    },
+    {
+      "id": "php-testing-and-diagnostic-artifacts",
+      "name": "PHP Testing and Diagnostic Artifacts",
+      "description": "Detection rules for PHP Testing and Diagnostic Artifacts.",
+      "group": "configuration",
+      "enabled": true,
+      "order": 5
+    },
+    {
+      "id": "sensitive-configuration-files",
+      "name": "Sensitive Configuration Files",
+      "description": "Detection rules for Sensitive Configuration Files.",
+      "group": "configuration",
+      "enabled": true,
+      "order": 6
+    },
+    {
+      "id": "legacy-php-artifacts",
+      "name": "Legacy PHP Artifacts",
+      "description": "Detection rules for Legacy PHP Artifacts.",
+      "group": "execution",
+      "enabled": true,
+      "order": 7
+    },
+    {
+      "id": "additional-archive-formats",
+      "name": "Additional Archive Formats",
+      "description": "Detection rules for Additional Archive Formats.",
+      "group": "exposure",
+      "enabled": true,
+      "order": 8
+    },
+    {
+      "id": "backup-and-legacy-deployment-directories",
+      "name": "Backup and Legacy Deployment Directories",
+      "description": "Detection rules for Backup and Legacy Deployment Directories.",
+      "group": "exposure",
+      "enabled": true,
+      "order": 9
+    },
+    {
+      "id": "backup-temporary-and-editor-files",
+      "name": "Backup, Temporary, and Editor Files",
+      "description": "Detection rules for Backup, Temporary, and Editor Files.",
+      "group": "exposure",
+      "enabled": true,
+      "order": 10
+    },
+    {
+      "id": "exposed-artifacts",
+      "name": "Exposed Artifacts",
+      "description": "Detection rules for Exposed Artifacts.",
+      "group": "exposure",
+      "enabled": true,
+      "order": 11
+    },
+    {
+      "id": "exposed-logs-and-runtime-storage",
+      "name": "Exposed Logs and Runtime Storage",
+      "description": "Detection rules for Exposed Logs and Runtime Storage.",
+      "group": "exposure",
+      "enabled": true,
+      "order": 12
+    },
+    {
+      "id": "crlf-injection",
+      "name": "CRLF Injection",
+      "description": "Detection rules for CRLF Injection.",
+      "group": "injection",
+      "enabled": true,
+      "order": 13
+    },
+    {
+      "id": "cross-site-scripting",
+      "name": "Cross-Site Scripting",
+      "description": "Detection rules for Cross-Site Scripting.",
+      "group": "injection",
+      "enabled": true,
+      "order": 14
+    },
+    {
+      "id": "operating-system-command-injection",
+      "name": "Operating-System Command Injection",
+      "description": "Detection rules for Operating-System Command Injection.",
+      "group": "injection",
+      "enabled": true,
+      "order": 15
+    },
+    {
+      "id": "php-code-injection",
+      "name": "PHP Code Injection",
+      "description": "Detection rules for PHP Code Injection.",
+      "group": "injection",
+      "enabled": true,
+      "order": 16
+    },
+    {
+      "id": "sql-injection",
+      "name": "SQL Injection",
+      "description": "Detection rules for SQL Injection.",
+      "group": "injection",
+      "enabled": true,
+      "order": 17
+    },
+    {
+      "id": "stream-wrapper-and-remote-file-inclusion",
+      "name": "Stream Wrapper and Remote File Inclusion",
+      "description": "Detection rules for Stream Wrapper and Remote File Inclusion.",
+      "group": "injection",
+      "enabled": true,
+      "order": 18
+    },
+    {
+      "id": "known-exploit-signatures",
+      "name": "Known Exploit Signatures",
+      "description": "Detection rules for Known Exploit Signatures.",
+      "group": "malware",
+      "enabled": true,
+      "order": 19
+    },
+    {
+      "id": "administrative-interfaces-and-installation-endpoints",
+      "name": "Administrative Interfaces and Installation Endpoints",
+      "description": "Detection rules for Administrative Interfaces and Installation Endpoints.",
+      "group": "protocol",
+      "enabled": true,
+      "order": 20
+    },
+    {
+      "id": "diagnostic-and-runtime-endpoints",
+      "name": "Diagnostic and Runtime Endpoints",
+      "description": "Detection rules for Diagnostic and Runtime Endpoints.",
+      "group": "protocol",
+      "enabled": true,
+      "order": 21
+    },
+    {
+      "id": "repository-and-dependency-metadata",
+      "name": "Repository and Dependency Metadata",
+      "description": "Detection rules for Repository and Dependency Metadata.",
+      "group": "reconnaissance",
+      "enabled": true,
+      "order": 22
+    },
+    {
+      "id": "vulnerability-scanners",
+      "name": "Vulnerability Scanners",
+      "description": "Detection rules for Vulnerability Scanners.",
+      "group": "scanners",
+      "enabled": true,
+      "order": 23
+    },
+    {
+      "id": "local-file-inclusion-and-file-disclosure",
+      "name": "Local File Inclusion and File Disclosure",
+      "description": "Detection rules for Local File Inclusion and File Disclosure.",
+      "group": "traversal",
+      "enabled": true,
+      "order": 24
+    },
+    {
+      "id": "path-traversal",
+      "name": "Path Traversal",
+      "description": "Detection rules for Path Traversal.",
+      "group": "traversal",
+      "enabled": true,
+      "order": 25
+    }
+  ]
+}

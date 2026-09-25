@@ -1,0 +1,8 @@
+{
+  "ruleId": "certificates-and-private-keys-pki-key-path",
+  "cases": [
+    { "input": "/private/server.key", "matches": true, "reason": "Potential private key filename." },
+    { "input": "/assets/site.css", "matches": false, "reason": "Ordinary stylesheet without the indicator." },
+    { "input": "/assets/site.keyframes.css", "matches": true, "reason": "Known false positive: substring matching does not enforce an extension boundary." }
+  ]
+}

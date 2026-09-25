@@ -1,0 +1,553 @@
+{
+  "schema_version": 1,
+  "category": {
+    "id": "backup-temporary-and-editor-files",
+    "name": "Backup, Temporary, and Editor Files",
+    "short_name": "Backup, Temporary, and Editor Files",
+    "description": "Detection rules for Backup, Temporary, and Editor Files."
+  },
+  "rules": [
+    {
+      "id": "backup-temporary-and-editor-files-bak-path",
+      "name": "Backup File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".bak",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "backup",
+        "generic",
+        "temporary-file"
+      ],
+      "notes": "Backup file suffix that may expose previous versions of application files.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "backup-temporary-and-editor-files-backup-path",
+      "name": "Backup File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".backup",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "backup",
+        "generic",
+        "temporary-file"
+      ],
+      "notes": "Backup file suffix commonly created during maintenance or deployments.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "backup-temporary-and-editor-files-old-path",
+      "name": "Old File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".old",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "backup",
+        "generic",
+        "temporary-file"
+      ],
+      "notes": "Previous-version file retained after upgrades or migrations.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "backup-temporary-and-editor-files-orig-path",
+      "name": "Original File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".orig",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "backup",
+        "generic",
+        "temporary-file"
+      ],
+      "notes": "Original file retained during patching, merging, or package upgrades.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "backup-temporary-and-editor-files-save-path",
+      "name": "Save File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".save",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "backup",
+        "generic",
+        "temporary-file"
+      ],
+      "notes": "Saved backup copy created by editors or deployment tools.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "backup-temporary-and-editor-files-tmp-path",
+      "name": "Temporary File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".tmp",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "backup",
+        "generic",
+        "temporary-file"
+      ],
+      "notes": "Temporary file that may expose incomplete or transient application data.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "backup-temporary-and-editor-files-vim-swp-path",
+      "name": "Vim Swap File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".swp",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "vim"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "backup",
+        "generic",
+        "temporary-file",
+        "vim"
+      ],
+      "notes": "Vim swap file that may contain unsaved source code or sensitive content.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "backup-temporary-and-editor-files-vim-swo-path",
+      "name": "Vim Swap File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".swo",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "vim"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "backup",
+        "generic",
+        "temporary-file",
+        "vim"
+      ],
+      "notes": "Vim alternate swap file containing unsaved editor data.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "backup-temporary-and-editor-files-log-path",
+      "name": "Log File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".log",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "backup",
+        "generic",
+        "temporary-file"
+      ],
+      "notes": "Log file that may expose stack traces, credentials, or internal application details. Broad match requiring extension-boundary review.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "backup-temporary-and-editor-files-dump-path",
+      "name": "Dump File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".dump",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "backup",
+        "generic",
+        "temporary-file"
+      ],
+      "notes": "Database, memory, or application dump file that may contain sensitive information.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    }
+  ]
+}

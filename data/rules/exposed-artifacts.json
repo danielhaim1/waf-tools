@@ -1,0 +1,5399 @@
+{
+  "schema_version": 1,
+  "category": {
+    "id": "exposed-artifacts",
+    "name": "Exposed Artifacts",
+    "short_name": "Exposed Artifacts",
+    "description": "Detection rules for Exposed Artifacts."
+  },
+  "rules": [
+    {
+      "id": "exposed-artifacts-tar-gz-path",
+      "name": "TAR GZ File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".tar.gz",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Compressed TAR archive that may expose application source code or backups.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-tgz-path",
+      "name": "TGZ File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".tgz",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Gzip-compressed TAR archive.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-7-zip-7z-path",
+      "name": "7-Zip 7z File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".7z",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "7-zip"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "7-zip",
+        "artifact",
+        "exposed",
+        "generic"
+      ],
+      "notes": "7-Zip archive that may expose application files or backups.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-winrar-rar-path",
+      "name": "WinRAR Rar File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".rar",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "winrar"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "winrar"
+      ],
+      "notes": "RAR archive that may expose application files or backups.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-macos-hidden-ds-store-path",
+      "name": "macOS Hidden Ds Store File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.DS_Store",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "macos"
+        ],
+        "operating_systems": [
+          "macos"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "macos"
+      ],
+      "notes": "macOS Finder metadata file that may disclose directory contents.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-nodejs-package-json-path",
+      "name": "Node.js Package JSON File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/package.json",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "nodejs"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "nodejs"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "nodejs"
+      ],
+      "notes": "Node.js package manifest exposing project metadata and dependencies.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-npm-package-lock-json-path",
+      "name": "npm Package Lock JSON File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/package-lock.json",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "npm"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "npm"
+      ],
+      "notes": "npm dependency lock file exposing exact package versions.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-yarn-yarn-lock-path",
+      "name": "Yarn Lock File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/yarn.lock",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "yarn"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "yarn"
+      ],
+      "notes": "Yarn dependency lock file exposing exact package versions.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-pnpm-pnpm-lock-yaml-path",
+      "name": "pnpm Lock YAML File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/pnpm-lock.yaml",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "pnpm"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "pnpm"
+      ],
+      "notes": "pnpm dependency lock file exposing exact package versions.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-mercurial-hidden-hg-path",
+      "name": "Mercurial Hidden Hg File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.hg",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "mercurial"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "mercurial"
+      ],
+      "notes": "Mercurial repository metadata that may expose repository history or source code.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-bazaar-hidden-bzr-path",
+      "name": "Bazaar Hidden Bzr File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.bzr",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "bazaar"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "bazaar",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Bazaar repository metadata that may expose repository history or source code.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-git-hidden-gitignore-path",
+      "name": "Git Hidden Gitignore File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.gitignore",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "git"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "git"
+      ],
+      "notes": "Git ignore configuration revealing repository structure and excluded files.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-git-hidden-gitattributes-path",
+      "name": "Git Hidden Gitattributes File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.gitattributes",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "git"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "git"
+      ],
+      "notes": "Git attributes configuration file that may reveal repository structure or deployment behavior.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-git-hidden-gitmodules-path",
+      "name": "Git Hidden Gitmodules File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.gitmodules",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "git"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "git"
+      ],
+      "notes": "Git submodule configuration exposing repository relationships.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-composer-composer-lock-path",
+      "name": "Composer Lock File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/composer.lock",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "composer"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "composer",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Composer dependency lock file disclosing exact package versions.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-net-packages-lock-json-path",
+      "name": ".NET Packages Lock JSON File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/packages.lock.json",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "dotnet"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "dotnet",
+        "exposed",
+        "generic"
+      ],
+      "notes": ".NET dependency lock file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-net-packages-config-path",
+      "name": ".NET Packages Config File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/packages.config",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "dotnet"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "dotnet",
+        "exposed",
+        "generic"
+      ],
+      "notes": ".NET package manifest listing project dependencies.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-python-requirements-txt-path",
+      "name": "Python Requirements Txt File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/requirements.txt",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "python"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "python"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "python"
+      ],
+      "notes": "Python dependency manifest.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-python-requirements-dev-txt-path",
+      "name": "Python Requirements Dev Txt File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/requirements-dev.txt",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "python"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "python"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "python"
+      ],
+      "notes": "Python development dependency manifest.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-python-pyproject-toml-path",
+      "name": "Python Pyproject Toml File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/pyproject.toml",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "python"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "python"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "python"
+      ],
+      "notes": "Python project configuration and build metadata.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-uv-uv-lock-path",
+      "name": "uv Lock File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/uv.lock",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "uv"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "uv"
+      ],
+      "notes": "uv dependency lock file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-ruby-gemfile-path",
+      "name": "Ruby Gemfile Path",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/Gemfile",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "ruby"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "ruby"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "ruby"
+      ],
+      "notes": "Ruby dependency manifest.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-ruby-gemfile-lock-path",
+      "name": "Ruby Gemfile Lock File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/Gemfile.lock",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "ruby"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "ruby"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "ruby"
+      ],
+      "notes": "Ruby dependency lock file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-rust-cargo-toml-path",
+      "name": "Rust Cargo Toml File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/Cargo.toml",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "rust"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "rust"
+      ],
+      "notes": "Rust package manifest.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-rust-cargo-lock-path",
+      "name": "Rust Cargo Lock File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/Cargo.lock",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "rust"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "rust"
+      ],
+      "notes": "Rust dependency lock file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-go-go-mod-path",
+      "name": "Go Mod File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/go.mod",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "go"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "go"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "go"
+      ],
+      "notes": "Go module manifest.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-go-go-sum-path",
+      "name": "Go Sum File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/go.sum",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "go"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "go"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "go"
+      ],
+      "notes": "Go dependency checksum file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-docker-hidden-dockerignore-path",
+      "name": "Docker Hidden Dockerignore File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.dockerignore",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "docker"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "docker",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Docker ignore configuration.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-docker-compose-compose-yaml-path",
+      "name": "Docker Compose YAML File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/compose.yaml",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "docker-compose"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "docker-compose",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Docker Compose configuration file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-docker-compose-compose-yml-path",
+      "name": "Docker Compose YAML File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/compose.yml",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "docker-compose"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "docker-compose",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Docker Compose configuration file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-docker-compose-docker-compose-override-path",
+      "name": "Docker Compose Override File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/docker-compose.override",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "docker-compose"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "docker-compose",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Docker Compose override configuration.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-dev-containers-hidden-devcontainer-path",
+      "name": "Dev Containers Hidden Devcontainer Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.devcontainer/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "dev-containers"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "dev-containers",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Development container configuration directory.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-terraform-hidden-terraform-lock-hcl-path",
+      "name": "Terraform Hidden Lock Hcl File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.terraform.lock.hcl",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "terraform"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "terraform"
+      ],
+      "notes": "Terraform provider dependency lock file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-terraform-tfstate-path",
+      "name": "Terraform Tfstate File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".tfstate",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "terraform"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "terraform"
+      ],
+      "notes": "Terraform state file that may expose infrastructure details and secrets.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-terraform-terraform-tfvars-path",
+      "name": "Terraform Tfvars File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/terraform.tfvars",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "terraform"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "terraform"
+      ],
+      "notes": "Terraform variable definitions that frequently contain credentials or infrastructure configuration.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-terraform-tfvars-path",
+      "name": "Terraform Tfvars File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".tfvars",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "terraform"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "terraform"
+      ],
+      "notes": "Terraform variable definitions.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-terragrunt-hidden-terragrunt-cache-path",
+      "name": "Terragrunt Hidden Cache Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.terragrunt-cache/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "terragrunt"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "terragrunt"
+      ],
+      "notes": "Terragrunt cache directory.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-terragrunt-terragrunt-hcl-path",
+      "name": "Terragrunt Hcl File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/terragrunt.hcl",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "terragrunt"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "terragrunt"
+      ],
+      "notes": "Terragrunt configuration file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-github-hidden-github-path",
+      "name": "GitHub Hidden Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.github/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "github"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "github"
+      ],
+      "notes": "GitHub repository configuration, workflows, and metadata.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-gitlab-ci-hidden-gitlab-ci-yml-path",
+      "name": "GitLab CI Hidden YAML File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.gitlab-ci.yml",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "cd",
+          "gitlab-ci"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "cd",
+        "exposed",
+        "generic",
+        "gitlab-ci"
+      ],
+      "notes": "GitLab CI pipeline configuration that may disclose build and deployment workflows.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-circleci-hidden-circleci-path",
+      "name": "CircleCI Hidden Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.circleci/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "circleci"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "circleci",
+        "exposed",
+        "generic"
+      ],
+      "notes": "CircleCI configuration directory containing CI/CD workflow definitions.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-jenkins-jenkinsfile-path",
+      "name": "Jenkins Jenkinsfile Path",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/Jenkinsfile",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "jenkins"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "jenkins"
+      ],
+      "notes": "Jenkins pipeline definition exposing build and deployment logic.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-bitbucket-pipelines-bitbucket-pipelines-yml-path",
+      "name": "Bitbucket Pipelines YAML File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/bitbucket-pipelines.yml",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "bitbucket-pipelines"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "bitbucket-pipelines",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Bitbucket Pipelines configuration.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-azure-devops-azure-pipelines-yml-path",
+      "name": "Azure DevOps Pipelines YAML File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/azure-pipelines.yml",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "azure-devops"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "azure-devops",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Azure DevOps pipeline configuration.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-credentials-json-path",
+      "name": "Credentials JSON File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/credentials.json",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Credentials file that may contain API keys, service accounts, or authentication secrets.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-secrets-json-path",
+      "name": "Secrets JSON File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/secrets.json",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Secrets configuration file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-secrets-yaml-path",
+      "name": "Secrets YAML File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/secrets.yaml",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic"
+      ],
+      "notes": "YAML secrets configuration file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-secrets-yml-path",
+      "name": "Secrets YAML File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/secrets.yml",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic"
+      ],
+      "notes": "YAML secrets configuration file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-hashicorp-vault-vault-json-path",
+      "name": "HashiCorp Vault JSON File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/vault.json",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "hashicorp-vault"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "hashicorp-vault"
+      ],
+      "notes": "Vault configuration or exported secrets file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-mozilla-sops-hidden-sops-yaml-path",
+      "name": "Mozilla SOPS Hidden YAML File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.sops.yaml",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "mozilla-sops"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "mozilla-sops"
+      ],
+      "notes": "SOPS encrypted secrets configuration.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-mozilla-sops-hidden-sops-yml-path",
+      "name": "Mozilla SOPS Hidden YAML File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.sops.yml",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "mozilla-sops"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "mozilla-sops"
+      ],
+      "notes": "SOPS encrypted secrets configuration.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-age-age-key-path",
+      "name": "age Key File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/age.key",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "age"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "age",
+        "artifact",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Age encryption private key.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-openssh-id-rsa-path",
+      "name": "OpenSSH ID Rsa Path",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/id_rsa",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "openssh"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "openssh"
+      ],
+      "notes": "OpenSSH RSA private key.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-openssh-id-dsa-path",
+      "name": "OpenSSH ID Dsa Path",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/id_dsa",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "openssh"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "openssh"
+      ],
+      "notes": "OpenSSH DSA private key.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-openssh-id-ecdsa-path",
+      "name": "OpenSSH ID Ecdsa Path",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/id_ecdsa",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "openssh"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "openssh"
+      ],
+      "notes": "OpenSSH ECDSA private key.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-openssh-id-ed25519-path",
+      "name": "OpenSSH ID Ed25519 Path",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/id_ed25519",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "openssh"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "openssh"
+      ],
+      "notes": "OpenSSH Ed25519 private key.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-npm-hidden-npmrc-path",
+      "name": "npm Hidden Npmrc File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.npmrc",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "npm"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "npm"
+      ],
+      "notes": "npm configuration that may contain authentication tokens or private registry credentials.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-yarn-hidden-yarnrc-path",
+      "name": "Yarn Hidden Yarnrc File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.yarnrc",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "yarn"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "yarn"
+      ],
+      "notes": "Yarn configuration file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-yarn-berry-hidden-yarnrc-yml-path",
+      "name": "Yarn Berry Hidden Yarnrc YAML File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.yarnrc.yml",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "yarn-berry"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "yarn-berry"
+      ],
+      "notes": "Yarn Berry configuration file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-python-packaging-hidden-pypirc-path",
+      "name": "Python Packaging Hidden Pypirc File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.pypirc",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "python-packaging"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "python"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "python",
+        "python-packaging"
+      ],
+      "notes": "Python package publishing configuration that may contain PyPI credentials.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-rubygems-hidden-gem-credentials-path",
+      "name": "RubyGems Credentials Path",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.gem/credentials",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "rubygems"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "ruby"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "ruby",
+        "rubygems"
+      ],
+      "notes": "RubyGems credentials file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-apache-maven-settings-xml-path",
+      "name": "Apache Maven Settings Xml File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/settings.xml",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "apache-maven"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "apache"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "apache",
+        "apache-maven",
+        "artifact",
+        "exposed"
+      ],
+      "notes": "Maven settings file that may contain repository credentials.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-nuget-nuget-config-path",
+      "name": "NuGet Config File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/nuget.config",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "nuget"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "nuget"
+      ],
+      "notes": "NuGet package configuration that may contain package source credentials.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-wordpress-wp-config-php-save-path",
+      "name": "WordPress Config PHP Save File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/wp-config.php.save",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "wordpress"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "wordpress"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "wordpress"
+      ],
+      "notes": "Backup copy of the WordPress configuration file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-wordpress-wp-config-php-path",
+      "name": "WordPress Config Php~ File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/wp-config.php~",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "wordpress"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "wordpress"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "wordpress"
+      ],
+      "notes": "Editor backup of the WordPress configuration file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-wordpress-wp-config-sample-php-path",
+      "name": "WordPress Config Sample PHP File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/wp-config-sample.php",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "low",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "wordpress"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "wordpress"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "wordpress"
+      ],
+      "notes": "Default WordPress sample configuration file that may indicate an incomplete installation or expose deployment details.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-debug-log-path",
+      "name": "Debug Log File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/debug.log",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Application debug log that may expose stack traces, credentials, or sensitive information.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-error-log-path",
+      "name": "Error Log Path",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/error_log",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Server or application error log that may disclose internal implementation details.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-zip-path",
+      "name": "ZIP File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".zip",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic"
+      ],
+      "notes": "ZIP archive that may expose application source code or backups.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-bz2-path",
+      "name": "Bz2 File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".bz2",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic"
+      ],
+      "notes": "BZip2-compressed archive.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-xz-path",
+      "name": "Xz File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".xz",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic"
+      ],
+      "notes": "XZ-compressed archive.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-zst-path",
+      "name": "Zst File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".zst",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Zstandard-compressed archive.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-lz-path",
+      "name": "Lz File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".lz",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Lzip-compressed archive.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-lz4-path",
+      "name": "Lz4 File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".lz4",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic"
+      ],
+      "notes": "LZ4-compressed archive.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-sql-gz-path",
+      "name": "SQL GZ File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".sql.gz",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Compressed SQL database dump.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-sql-zip-path",
+      "name": "SQL ZIP File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".sql.zip",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Archived SQL database dump.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-sqlite-sqlite3-path",
+      "name": "SQLite Sqlite3 File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".sqlite3",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "sqlite"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "sqlite"
+      ],
+      "notes": "SQLite database containing application data.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-microsoft-access-mdb-path",
+      "name": "Microsoft Access Mdb File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".mdb",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "microsoft-access"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "microsoft-access"
+      ],
+      "notes": "Microsoft Access database.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-microsoft-access-accdb-path",
+      "name": "Microsoft Access Accdb File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".accdb",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "microsoft-access"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "microsoft-access"
+      ],
+      "notes": "Microsoft Access database.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-x-509-pki-cer-path",
+      "name": "X.509 PKI Cer File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".cer",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "x509-pki"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "x509-pki"
+      ],
+      "notes": "X.509 certificate.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-pki-csr-path",
+      "name": "PKI Csr File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".csr",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "pki"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "pki"
+      ],
+      "notes": "Certificate Signing Request (CSR).",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-x-509-pki-der-path",
+      "name": "X.509 PKI Der File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".der",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "x509-pki"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "x509-pki"
+      ],
+      "notes": "DER-encoded certificate or cryptographic key.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-java-jks-path",
+      "name": "Java Jks File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".jks",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "java"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "java"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "java"
+      ],
+      "notes": "Java KeyStore containing certificates or private keys.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-java-keystore-path",
+      "name": "Java Keystore File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".keystore",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "java"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "java"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "java"
+      ],
+      "notes": "Java keystore containing certificates or private keys.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-keepass-kdbx-path",
+      "name": "KeePass Kdbx File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".kdbx",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "keepass"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "keepass"
+      ],
+      "notes": "KeePass password database.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-openvpn-ovpn-path",
+      "name": "OpenVPN Ovpn File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".ovpn",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "openvpn"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "openvpn"
+      ],
+      "notes": "OpenVPN client configuration that may contain certificates and connection details.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-model-context-protocol-mcp-hidden-mcp-json-path",
+      "name": "Model Context Protocol (MCP) Hidden MCP JSON File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.mcp.json",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "model-context-protocol-mcp"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "model-context-protocol-mcp"
+      ],
+      "notes": "Hidden MCP configuration file containing AI integration settings.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-model-context-protocol-mcp-mcp-json-path",
+      "name": "Model Context Protocol (MCP) MCP JSON File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/mcp.json",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "model-context-protocol-mcp"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "model-context-protocol-mcp"
+      ],
+      "notes": "MCP configuration file that may expose server capabilities or integration details.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-model-context-protocol-mcp-mcp-yaml-path",
+      "name": "Model Context Protocol (MCP) MCP YAML File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/mcp.yaml",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "model-context-protocol-mcp"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "model-context-protocol-mcp"
+      ],
+      "notes": "MCP YAML configuration file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-model-context-protocol-mcp-mcp-yml-path",
+      "name": "Model Context Protocol (MCP) MCP YAML File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/mcp.yml",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "model-context-protocol-mcp"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "model-context-protocol-mcp"
+      ],
+      "notes": "MCP YAML configuration file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-claude-code-hidden-claude-path",
+      "name": "Claude Code Hidden Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.claude/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "claude-code"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "claude-code",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Claude Code project metadata and local configuration directory.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-cursor-hidden-cursor-path",
+      "name": "Cursor Hidden Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.cursor/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "cursor"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "cursor",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Cursor editor project metadata and workspace configuration.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-continue-hidden-continue-path",
+      "name": "Continue Hidden Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.continue/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "continue"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "continue",
+        "exposed",
+        "generic"
+      ],
+      "notes": "Continue extension project metadata and AI assistant configuration.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-roo-code-hidden-roo-path",
+      "name": "Roo Code Hidden Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.roo/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "roo-code"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "roo-code"
+      ],
+      "notes": "Roo Code project metadata and configuration.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "exposed-artifacts-windsurf-hidden-windsurf-path",
+      "name": "Windsurf Hidden Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.windsurf/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "windsurf"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "artifact",
+        "exposed",
+        "generic",
+        "windsurf"
+      ],
+      "notes": "Windsurf IDE project metadata and AI assistant configuration.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    }
+  ]
+}

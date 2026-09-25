@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr" prefix="og: http://ogp.me/ns#"
+  background-color: #FFF;">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <meta name="robots" content="all">
+
+  <meta name="url" content="https://www.example.com">
+  <link rel="home" href="https://www.example.com">
+  <link rel="canonical" href="https://www.example.com">
+
+  <title>WAF Tools</title>
+  <meta name="description"
+    content="Build evidence-backed WAF rulesets with CWE references, exploit indicators, and custom detection patterns. Review and export rules for your application." />
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+  <script defer src="./assets/js/app.js"></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#catalog">Skip to rules</a>
+  <main>
+    <header class="page-header">
+      <div class="header-topline">
+        <h1>WAF Rule Builder</h1>
+        <a class="header-source" href="https://github.com/danielhaim1/waf-tools"><img src="./assets/logos/github.svg"
+            alt="" width="18" height="18" />View on GitHub</a>
+      </div>
+      <div class="header-intro">
+        <p>
+          Build evidence-backed WAF rulesets with an open-source collection of CWE references,
+          exploit indicators, and custom detection patterns for security reviews and auditing.
+        </p>
+        <p class="header-support">
+          Export rules for Cloudflare, ModSecurity, AWS WAF, Azure Front Door, NGINX, Caddy,
+          and HAProxy, or download JSON, CSV, and TXT for custom workflows and auditing.
+          Carefully review and test your selected rules before deployment—broad patterns can
+          block legitimate requests depending on your application and environment.
+        </p>
+      </div>
+    </header>
+    <noscript>This builder needs JavaScript to search and select rules.</noscript>
+    <p id="load-status" role="status">Loading rules…</p>
+    <section id="builder" hidden aria-label="Rule selection">
+      <fieldset class="platform-picker" aria-describedby="platform-description">
+        <legend>Export format</legend>
+        <div id="platform-options" class="platform-options">
+          <button id="toggle-platforms" class="platform-option" type="button" aria-expanded="false"
+            aria-controls="platform-options">
+            <img class="platform-logo" src="./assets/logos/plus.svg" alt="" width="88" height="28" />
+            <span class="platform-toggle-label">Show more</span>
+          </button>
+        </div>
+        <p id="platform-description" class="muted"></p>
+      </fieldset>
+      <form id="discovery-toolbar" class="toolbar" role="search">
+        <div class="toolbar-main">
+          <label class="search-label" for="rule-search">Search rules
+            <input id="rule-search" type="search" placeholder="Name, pattern, platform, or CVE" autocomplete="off" />
+          </label>
+          <label for="preset-selector">Preset
+            <select id="preset-selector" aria-describedby="preset-description">
+              <option value="none">None</option>
+              <option value="conservative">Conservative</option>
+              <option value="balanced">Balanced</option>
+              <option value="aggressive">Aggressive</option>
+              <option value="custom">Custom</option>
+            </select>
+          </label>
+          <details class="filters">
+            <summary>Filters <span id="filter-count"></span></summary>
+            <div class="filter-options">
+              <fieldset>
+                <legend>Severity</legend>
+                <label><input type="checkbox" name="severity" value="critical" /> Critical</label>
+                <label><input type="checkbox" name="severity" value="high" /> High</label>
+                <label><input type="checkbox" name="severity" value="medium" /> Medium</label>
+                <label><input type="checkbox" name="severity" value="low" /> Low</label>
+              </fieldset>
+              <label>Show
+                <select name="selection">
+                  <option value="all">All rules</option>
+                  <option value="selected">Selected</option>
+                  <option value="unselected">Unselected</option>
+                </select></label>
+              <label><input type="checkbox" name="review-only" /> Requires review</label>
+              <button type="button" id="reset-filters">Reset filters</button>
+            </div>
+          </details>
+        </div>
+        <p id="preset-description" class="muted"></p>
+      </form>
+      <section id="compatibility" class="compatibility" aria-label="Export compatibility">
+        <p id="compatibility-summary" role="status"></p>
+        <p id="compatibility-errors" class="error" hidden></p>
+        <details id="excluded-rules" hidden>
+          <summary>Review excluded rules</summary>
+          <div id="excluded-rule-groups"></div>
+        </details>
+        <button id="export-compatible" type="button" hidden>Export compatible rules</button>
+        <details id="modsecurity-settings" hidden>
+          <summary>ModSecurity settings</summary>
+          <label for="modsecurity-id-base">Rule ID range start</label>
+          <input id="modsecurity-id-base" type="number" min="1" max="2146483648" step="1" value="1000000"
+            aria-describedby="id-range-help" />
+          <p id="id-range-help" class="muted">
+            Reserve one million IDs from this start. A rule keeps its ID when you change the
+            selection. Existing server IDs cannot be checked here.
+          </p>
+        </details>
+      </section>
+      <div class="list-toolbar">
+        <label><input id="select-all-rules" type="checkbox" /> Select all matching rules</label>
+        <span id="search-summary" role="status"></span>
+      </div>
+      <section id="catalog" tabindex="-1" aria-label="Rule categories"></section>
+      <p id="empty-results" hidden>No rules match. Try another search or reset the filters.</p>
+      <section id="output" hidden tabindex="-1" aria-labelledby="output-title">
+        <h2 id="output-title">WAF Rules</h2>
+        <section class="provider-output" aria-labelledby="provider-output-title">
+          <div class="output-heading">
+            <h3 id="provider-output-title">Cloudflare</h3>
+            <a id="download-output" class="button" download="cloudflare-rules.txt">Download</a>
+          </div>
+          <p id="export-coverage" role="status"></p>
+          <a id="download-exclusions" class="button" hidden download="excluded-rules.json">Download exclusion report</a>
+          <details id="installation-instructions">
+            <summary>Installation instructions</summary>
+            <p id="export-instructions"></p>
+            <p id="log-warning" hidden>
+              Log actions require Cloudflare Enterprise. These rules have not been changed to
+              Block.
+            </p>
+            <p class="muted" id="export-validation">
+              Review generated configurations and validate them in your target environment before
+              deploying.
+            </p>
+          </details>
+          <div id="generation-output"></div>
+        </section>
+      </section>
+      <footer class="action-bar">
+        <div>
+          <strong id="selected-count"></strong><span id="review-count"></span>
+          <p id="export-exclusion-notice" class="muted" hidden></p>
+        </div>
+        <button id="generate-rules" type="button" class="primary" aria-describedby="export-exclusion-notice">
+          Generate Expressions
+        </button>
+      </footer>
+      <p id="generation-status" role="status"></p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <span>WAF Rule Builder</span>
+    <a href="https://github.com/danielhaim1/waf-tools">View on GitHub</a>
+  </footer>
+</body>
+
+</html>

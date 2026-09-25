@@ -1,0 +1,61 @@
+{
+  "name": "@danielhaim/waf-tools",
+  "version": "1.0.0",
+  "description": "WAF Tools is a WAF rulesets generator with CWE references, exploit indicators, and custom detection patterns for security reviews and auditing.",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "start": "npm run dev",
+    "build": "node scripts/build.mjs",
+    "test": "node --test",
+    "lint": "eslint src scripts tests",
+    "format": "prettier --write src scripts tests data package.json README.md",
+    "validate": "node scripts/validate.mjs",
+    "check": "npm run validate && npm run lint && npm test && npm run build && npm run test:build",
+    "test:build": "node scripts/check-build.mjs",
+    "release": "npm run release:patch",
+    "release:current": "node scripts/release.mjs current",
+    "release:patch": "node scripts/release.mjs patch",
+    "release:minor": "node scripts/release.mjs minor",
+    "release:major": "node scripts/release.mjs major",
+    "release:check": "node scripts/release.mjs check",
+    "release:tag": "npm run check && node scripts/release.mjs tag",
+    "catalog:hash": "node scripts/release.mjs hash"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "@babel/preset-env": "^7.29.7",
+    "@eslint/js": "^9.17.0",
+    "acorn": "^8.18.0",
+    "core-js": "^3.50.0",
+    "esbuild": "^0.28.2",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.9.9",
+    "whatwg-fetch": "^3.6.20"
+  },
+  "license": "UNLICENSED",
+  "homepage": "https://github.com/danielhaim1/waf-tools#readme",
+  "bugs": "https://github.com/danielhaim1/waf-tools/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielhaim1/waf-tools.git"
+  },
+  "author": {
+    "name": "Daniel Haim",
+    "url": "https://github.com/danielhaim1"
+  },
+  "keywords": [
+    "waf",
+    "application-security",
+    "cloudflare",
+    "modsecurity",
+    "security-rules",
+    "cwe",
+    "ruleset-generator"
+  ]
+}

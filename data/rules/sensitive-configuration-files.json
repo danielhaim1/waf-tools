@@ -1,0 +1,1312 @@
+{
+  "schema_version": 1,
+  "category": {
+    "id": "sensitive-configuration-files",
+    "name": "Sensitive Configuration Files",
+    "short_name": "Sensitive Configuration Files",
+    "description": "Detection rules for Sensitive Configuration Files."
+  },
+  "rules": [
+    {
+      "id": "sensitive-configuration-files-wordpress-wp-config-path",
+      "name": "WordPress Config Path",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/wp-config",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "wordpress"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "wordpress"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "sensitive-file",
+        "wordpress"
+      ],
+      "notes": "WordPress configuration file family, including backup and temporary variants.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sensitive-configuration-files-hidden-env-path",
+      "name": "Hidden Env File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.env",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "generic",
+        "sensitive-file"
+      ],
+      "notes": "Environment variable file commonly containing application secrets and credentials.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sensitive-configuration-files-apache-hidden-htaccess-path",
+      "name": "Apache Hidden Htaccess File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.htaccess",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "apache-http-server"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "apache"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "apache",
+        "apache-http-server",
+        "configuration",
+        "sensitive-file"
+      ],
+      "notes": "Apache per-directory configuration file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sensitive-configuration-files-apache-hidden-htpasswd-path",
+      "name": "Apache Hidden Htpasswd File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/.htpasswd",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "apache-http-server"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "apache"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "apache",
+        "apache-http-server",
+        "configuration",
+        "sensitive-file"
+      ],
+      "notes": "Apache password file containing authentication credentials.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sensitive-configuration-files-microsoft-iis-web-config-path",
+      "name": "Microsoft IIS Web Config File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/web.config",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "aspnet",
+          "microsoft-iis"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "aspnet"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "aspnet",
+        "configuration",
+        "microsoft-iis",
+        "sensitive-file"
+      ],
+      "notes": "IIS and ASP.NET application configuration file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sensitive-configuration-files-auth-json-path",
+      "name": "Auth JSON File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/auth.json",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "generic",
+        "sensitive-file"
+      ],
+      "notes": "Authentication configuration or credential file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sensitive-configuration-files-oauth-oauth-json-path",
+      "name": "OAuth JSON File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/oauth.json",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "oauth"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "generic",
+        "oauth",
+        "sensitive-file"
+      ],
+      "notes": "OAuth client configuration file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sensitive-configuration-files-oauth-client-secret-json-path",
+      "name": "OAuth Client Secret JSON File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/client_secret.json",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "oauth"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "generic",
+        "oauth",
+        "sensitive-file"
+      ],
+      "notes": "OAuth client secret file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sensitive-configuration-files-token-json-path",
+      "name": "Token JSON File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/token.json",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "generic",
+        "sensitive-file"
+      ],
+      "notes": "Stored authentication token or access token file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sensitive-configuration-files-gcp-service-account-json-path",
+      "name": "Google Cloud Service Account JSON File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/service_account.json",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "google-cloud"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "generic",
+        "google-cloud",
+        "sensitive-file"
+      ],
+      "notes": "Google Cloud service account credentials.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sensitive-configuration-files-gcp-gcp-credentials-json-path",
+      "name": "Google Cloud Gcp Credentials JSON File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/gcp-credentials.json",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "google-cloud"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "generic",
+        "google-cloud",
+        "sensitive-file"
+      ],
+      "notes": "Google Cloud credentials file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sensitive-configuration-files-settings-local-path",
+      "name": "Settings Local File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/settings.local",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "generic",
+        "sensitive-file"
+      ],
+      "notes": "Local application settings intended for development or non-production environments.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sensitive-configuration-files-php-local-settings-php-path",
+      "name": "PHP Local Settings File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/local.settings.php",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "php",
+        "sensitive-file"
+      ],
+      "notes": "Local PHP application settings.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sensitive-configuration-files-php-config-local-php-path",
+      "name": "PHP Config Local File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/config.local.php",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "php",
+        "sensitive-file"
+      ],
+      "notes": "Local PHP configuration file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sensitive-configuration-files-aspnet-appsettings-path",
+      "name": "ASP.NET Appsettings Path",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/appsettings",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "aspnet"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "aspnet"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "aspnet",
+        "configuration",
+        "sensitive-file"
+      ],
+      "notes": "ASP.NET application settings file family.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sensitive-configuration-files-config-secrets-path",
+      "name": "Secrets Path",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/config/secrets",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "generic",
+        "sensitive-file"
+      ],
+      "notes": "Application secrets directory.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sensitive-configuration-files-ruby-on-rails-master-key-path",
+      "name": "Ruby on Rails Master Key File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/master.key",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "ruby-on-rails"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "ruby"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "ruby",
+        "ruby-on-rails",
+        "sensitive-file"
+      ],
+      "notes": "Rails master encryption key used to decrypt application credentials.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sensitive-configuration-files-bootstrap-path",
+      "name": "Bootstrap File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/bootstrap.",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "generic",
+        "sensitive-file"
+      ],
+      "notes": "Application bootstrap file or executable.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sensitive-configuration-files-php-config-php-path",
+      "name": "PHP Config File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/config.php",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "php",
+        "sensitive-file"
+      ],
+      "notes": "Generic PHP configuration file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sensitive-configuration-files-php-configuration-php-path",
+      "name": "PHP Configuration File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/configuration.php",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "php",
+        "sensitive-file"
+      ],
+      "notes": "Application configuration file commonly used by PHP CMS platforms.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sensitive-configuration-files-symfony-parameters-path",
+      "name": "Symfony Parameters File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/parameters.",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "symfony"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "generic",
+        "sensitive-file",
+        "symfony"
+      ],
+      "notes": "Symfony parameters configuration file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sensitive-configuration-files-drupal-settings-php-path",
+      "name": "Drupal Settings PHP File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/settings.php",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "drupal",
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "drupal",
+        "php",
+        "sensitive-file"
+      ],
+      "notes": "CMS or PHP application settings file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "sensitive-configuration-files-magento-local-xml-path",
+      "name": "Magento Local Xml File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/local.xml",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "magento"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "generic",
+        "magento",
+        "sensitive-file"
+      ],
+      "notes": "Legacy Magento application configuration file.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    }
+  ]
+}

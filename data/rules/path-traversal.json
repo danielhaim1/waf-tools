@@ -1,0 +1,627 @@
+{
+  "schema_version": 1,
+  "category": {
+    "id": "path-traversal",
+    "name": "Path Traversal",
+    "short_name": "Path Traversal",
+    "description": "Detection rules for Path Traversal."
+  },
+  "rules": [
+    {
+      "id": "path-traversal-parent-directory",
+      "name": "Parent Directory Traversal",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "../",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-22"
+        ]
+      },
+      "tags": [
+        "generic",
+        "path-traversal"
+      ],
+      "notes": "Plain-text parent-directory traversal sequence.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "path-traversal-parent-directory-url-encoded",
+      "name": "Parent Directory Traversal",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "..%2f",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-22"
+        ]
+      },
+      "tags": [
+        "encoded",
+        "generic",
+        "path-traversal"
+      ],
+      "notes": "URL-encoded forward-slash directory traversal (`../`).",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "path-traversal-parent-directory-backslash",
+      "name": "Parent Directory Traversal",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "..%5c",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-22"
+        ]
+      },
+      "tags": [
+        "encoded",
+        "generic",
+        "path-traversal"
+      ],
+      "notes": "URL-encoded Windows backslash directory traversal (`..\\`).",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "path-traversal-parent-directory-fully-encoded",
+      "name": "Parent Directory Traversal",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "%2e%2e%2f",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-22"
+        ]
+      },
+      "tags": [
+        "encoded",
+        "generic",
+        "path-traversal"
+      ],
+      "notes": "Fully URL-encoded parent-directory traversal sequence.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "path-traversal-parent-directory-double-encoded",
+      "name": "Parent Directory Traversal",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "%252e%252e",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-22"
+        ]
+      },
+      "tags": [
+        "double-encoded",
+        "encoded",
+        "generic",
+        "path-traversal"
+      ],
+      "notes": "Double URL-encoded directory traversal sequence commonly used to bypass filters.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "path-traversal-parent-directory-query",
+      "name": "Query Parent Directory Traversal",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "../",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-22"
+        ]
+      },
+      "tags": [
+        "generic",
+        "path-traversal"
+      ],
+      "notes": "Parent-directory traversal sequence supplied via query parameters.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "path-traversal-parent-directory-query-url-encoded",
+      "name": "Parent Directory Traversal",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "..%2f",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-22"
+        ]
+      },
+      "tags": [
+        "encoded",
+        "generic",
+        "path-traversal"
+      ],
+      "notes": "URL-encoded forward-slash traversal supplied via query parameters.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "path-traversal-parent-directory-query-backslash",
+      "name": "Parent Directory Traversal",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "..%5c",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-22"
+        ]
+      },
+      "tags": [
+        "encoded",
+        "generic",
+        "path-traversal"
+      ],
+      "notes": "URL-encoded Windows backslash traversal supplied via query parameters.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "path-traversal-parent-directory-query-fully-encoded",
+      "name": "Parent Directory Traversal",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "%2e%2e%2f",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-22"
+        ]
+      },
+      "tags": [
+        "encoded",
+        "generic",
+        "path-traversal"
+      ],
+      "notes": "Fully URL-encoded directory traversal supplied via query parameters.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "path-traversal-parent-directory-query-double-encoded",
+      "name": "Parent Directory Traversal",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "%252e%252e",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-22"
+        ]
+      },
+      "tags": [
+        "double-encoded",
+        "encoded",
+        "generic",
+        "path-traversal"
+      ],
+      "notes": "Double URL-encoded traversal sequence supplied via query parameters.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "path-traversal-spip-query-traversal",
+      "name": "SPIP Skeleton Traversal",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "squelette=../",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "spip-cms"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-22"
+        ]
+      },
+      "tags": [
+        "generic",
+        "path-traversal",
+        "spip-cms"
+      ],
+      "notes": "Path traversal probe targeting the `squelette` template parameter used by SPIP.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    }
+  ]
+}

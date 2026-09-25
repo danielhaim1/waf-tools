@@ -1,0 +1,339 @@
+{
+  "schema_version": 1,
+  "category": {
+    "id": "diagnostic-and-runtime-endpoints",
+    "name": "Diagnostic and Runtime Endpoints",
+    "short_name": "Diagnostic and Runtime Endpoints",
+    "description": "Detection rules for Diagnostic and Runtime Endpoints."
+  },
+  "rules": [
+    {
+      "id": "diagnostic-and-runtime-endpoints-apache-server-status-path",
+      "name": "Apache Server Status Path",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/server-status",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "apache-http-server"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "apache"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "apache",
+        "apache-http-server",
+        "diagnostic-endpoint",
+        "runtime"
+      ],
+      "notes": "Apache `mod_status` endpoint exposing active requests, worker status, and server statistics.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "diagnostic-and-runtime-endpoints-apache-server-info-path",
+      "name": "Apache Server Info Path",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/server-info",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "apache-http-server"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "apache"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "apache",
+        "apache-http-server",
+        "diagnostic-endpoint",
+        "runtime"
+      ],
+      "notes": "Apache `mod_info` endpoint exposing loaded modules and server configuration.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "diagnostic-and-runtime-endpoints-spring-boot-actuator-path",
+      "name": "Spring Boot Actuator Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/actuator/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "spring-boot"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "diagnostic-endpoint",
+        "generic",
+        "runtime",
+        "spring-boot"
+      ],
+      "notes": "Spring Boot Actuator management endpoints exposing application health, metrics, environment, and management APIs.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "diagnostic-and-runtime-endpoints-go-debug-vars-path",
+      "name": "Go Vars Path",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/debug/vars",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "go-expvar"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "go"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "diagnostic-endpoint",
+        "go",
+        "go-expvar",
+        "runtime"
+      ],
+      "notes": "Go `expvar` endpoint exposing runtime variables and application internals.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "diagnostic-and-runtime-endpoints-trace-path",
+      "name": "Trace Path",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/trace",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "diagnostic-endpoint",
+        "generic",
+        "runtime"
+      ],
+      "notes": "Application tracing or diagnostic endpoint. Broad match requiring review.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "diagnostic-and-runtime-endpoints-metrics-path",
+      "name": "Metrics Path",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/metrics",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "diagnostic-endpoint",
+        "generic",
+        "runtime"
+      ],
+      "notes": "Application or infrastructure metrics endpoint. Broad match requiring review.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    }
+  ]
+}

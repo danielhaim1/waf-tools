@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "category": {
+    "id": "database-and-configuration-artifacts",
+    "name": "Database and Configuration Artifacts",
+    "short_name": "Database and Configuration Artifacts",
+    "description": "Detection rules for Database and Configuration Artifacts."
+  },
+  "rules": [
+    {
+      "id": "database-and-configuration-artifacts-sql-databases-sql-path",
+      "name": "SQL File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".sql",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "sql-databases"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "file",
+        "generic",
+        "sql-databases"
+      ],
+      "notes": "SQL database dump or script that may expose application data, schema, or credentials.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "database-and-configuration-artifacts-sqlite-sqlite-path",
+      "name": "SQLite File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".sqlite",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "sqlite"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "file",
+        "generic",
+        "sqlite"
+      ],
+      "notes": "SQLite database file containing application data.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "database-and-configuration-artifacts-ini-path",
+      "name": "INI File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".ini",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "file",
+        "generic"
+      ],
+      "notes": "Application or runtime configuration file that may contain credentials or environment settings. Broad match requiring extension-boundary review.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "database-and-configuration-artifacts-yaml-yml-path",
+      "name": "YAML File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".yml",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "yaml"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "file",
+        "generic",
+        "yaml"
+      ],
+      "notes": "YAML configuration file that may expose infrastructure or application configuration. Broad match requiring extension-boundary review.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "database-and-configuration-artifacts-yaml-yaml-path",
+      "name": "YAML File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".yaml",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "low",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "yaml"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "configuration",
+        "file",
+        "generic",
+        "yaml"
+      ],
+      "notes": "YAML configuration file that may expose infrastructure or application configuration. Broad match requiring extension-boundary review.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,298 @@
+{
+  "schema_version": 1,
+  "category": {
+    "id": "certificates-and-private-keys",
+    "name": "Certificates and Private Keys",
+    "short_name": "Certificates and Private Keys",
+    "description": "Detection rules for Certificates and Private Keys."
+  },
+  "rules": [
+    {
+      "id": "certificates-and-private-keys-x-509-pem-path",
+      "name": "X.509 PEM File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".pem",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "openssl",
+          "x509"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "certificate",
+        "generic",
+        "openssl",
+        "private-key",
+        "x509"
+      ],
+      "notes": "PEM-encoded certificate, private key, or certificate chain. May expose cryptographic material.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "certificates-and-private-keys-pki-key-path",
+      "name": "PKI Key File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".key",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "medium",
+        "false_positive_risk": "high"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "pki"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "certificate",
+        "generic",
+        "pki",
+        "private-key"
+      ],
+      "notes": "Potential private-key filename indicator. This rule matches .key anywhere in a path, including legitimate assets such as /assets/site.keyframes.css; it does not verify a file extension or exposed key material. Review application routes and test legitimate traffic before enabling. Retained for manual selection pending extension-boundary support.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "certificates-and-private-keys-x-509-pki-crt-path",
+      "name": "X.509 PKI CRT File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".crt",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "x509-pki"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "certificate",
+        "generic",
+        "private-key",
+        "x509-pki"
+      ],
+      "notes": "X.509 certificate file. May reveal certificate chain and deployment details.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "certificates-and-private-keys-pkcs-12-p12-path",
+      "name": "PKCS#12 P12 File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".p12",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "pkcs-12"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "certificate",
+        "generic",
+        "pkcs-12",
+        "private-key"
+      ],
+      "notes": "PKCS#12 archive containing certificates and private keys, typically password-protected.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "certificates-and-private-keys-pkcs-12-pfx-path",
+      "name": "PKCS#12 PFX File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".pfx",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "pkcs-12"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "certificate",
+        "generic",
+        "pkcs-12",
+        "private-key"
+      ],
+      "notes": "PKCS#12 archive containing certificates and private keys, commonly used on Windows systems.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    }
+  ]
+}

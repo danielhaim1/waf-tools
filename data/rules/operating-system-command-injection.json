@@ -1,0 +1,365 @@
+{
+  "schema_version": 1,
+  "category": {
+    "id": "operating-system-command-injection",
+    "name": "Operating-System Command Injection",
+    "short_name": "Operating-System Command Injection",
+    "description": "Detection rules for Operating-System Command Injection."
+  },
+  "rules": [
+    {
+      "id": "operating-system-command-injection-windows-cmd-exe-query",
+      "name": "Windows Cmd.exe",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "cmd.exe",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "microsoft-windows"
+        ],
+        "operating_systems": [
+          "windows"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-78"
+        ]
+      },
+      "tags": [
+        "command-injection",
+        "generic",
+        "microsoft-windows",
+        "rce"
+      ],
+      "notes": "Windows command interpreter commonly targeted in operating-system command injection attacks.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "operating-system-command-injection-windows-powershell-query",
+      "name": "Windows Powershell",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "powershell",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "microsoft-windows"
+        ],
+        "operating_systems": [
+          "windows"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-78"
+        ]
+      },
+      "tags": [
+        "command-injection",
+        "generic",
+        "microsoft-windows",
+        "rce"
+      ],
+      "notes": "PowerShell invocation frequently used during post-exploitation and remote code execution attacks.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "operating-system-command-injection-linux-curl-20-url-encoded-query",
+      "name": "Linux Url Encoded Curl%20",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "curl%20",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "linux",
+          "unix"
+        ],
+        "operating_systems": [
+          "linux"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-78"
+        ]
+      },
+      "tags": [
+        "command-injection",
+        "encoded",
+        "generic",
+        "linux",
+        "rce",
+        "unix"
+      ],
+      "notes": "URL-encoded `curl` command followed by a space, commonly used to download payloads.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "operating-system-command-injection-linux-curl-query",
+      "name": "Linux Curl+",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "curl+",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "linux",
+          "unix"
+        ],
+        "operating_systems": [
+          "linux"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-78"
+        ]
+      },
+      "tags": [
+        "command-injection",
+        "encoded",
+        "generic",
+        "linux",
+        "rce",
+        "unix"
+      ],
+      "notes": "Form-encoded `curl` command followed by a space.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "operating-system-command-injection-linux-wget-20-url-encoded-query",
+      "name": "Linux Url Encoded Wget%20",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "wget%20",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "linux",
+          "unix"
+        ],
+        "operating_systems": [
+          "linux"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-78"
+        ]
+      },
+      "tags": [
+        "command-injection",
+        "encoded",
+        "generic",
+        "linux",
+        "rce",
+        "unix"
+      ],
+      "notes": "URL-encoded `wget` command followed by a space, commonly used to retrieve malicious payloads.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "operating-system-command-injection-linux-wget-query",
+      "name": "Linux Wget+",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "wget+",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "linux",
+          "unix"
+        ],
+        "operating_systems": [
+          "linux"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-78"
+        ]
+      },
+      "tags": [
+        "command-injection",
+        "encoded",
+        "generic",
+        "linux",
+        "rce",
+        "unix"
+      ],
+      "notes": "Form-encoded `wget` command followed by a space.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    }
+  ]
+}

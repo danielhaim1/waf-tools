@@ -1,0 +1,296 @@
+{
+  "schema_version": 1,
+  "category": {
+    "id": "php-testing-and-diagnostic-artifacts",
+    "name": "PHP Testing and Diagnostic Artifacts",
+    "short_name": "PHP Testing and Diagnostic Artifacts",
+    "description": "Detection rules for PHP Testing and Diagnostic Artifacts."
+  },
+  "rules": [
+    {
+      "id": "php-testing-and-diagnostic-artifacts-phpunit-vendor-phpunit-path",
+      "name": "PHPUnit Path",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/vendor/phpunit",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "phpunit"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [
+          "CVE-2017-9841"
+        ],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "php",
+        "phpunit",
+        "testing"
+      ],
+      "notes": "Exposed PHPUnit dependency directory frequently targeted for remote code execution.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "php-testing-and-diagnostic-artifacts-phpunit-phpunit-path",
+      "name": "PHPUnit Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/phpunit/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "phpunit"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [
+          "CVE-2017-9841"
+        ],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "php",
+        "phpunit",
+        "testing"
+      ],
+      "notes": "Exposed PHPUnit installation or test endpoint.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "php-testing-and-diagnostic-artifacts-phpunit-eval-stdin-php-path",
+      "name": "PHPUnit Eval Stdin PHP File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/eval-stdin.php",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "phpunit"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [
+          "CVE-2017-9841"
+        ],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "php",
+        "phpunit",
+        "testing"
+      ],
+      "notes": "PHPUnit `eval-stdin.php` endpoint vulnerable to unauthenticated remote code execution.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "php-testing-and-diagnostic-artifacts-php-phpinfo-php-path",
+      "name": "PHP Phpinfo File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/phpinfo.php",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "php",
+        "testing"
+      ],
+      "notes": "PHP diagnostic page exposing server configuration, loaded modules, environment variables, and system information.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "php-testing-and-diagnostic-artifacts-phpsysinfo-phpsysinfo-path",
+      "name": "phpSysInfo Path",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/phpsysinfo",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "phpsysinfo"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "php",
+        "phpsysinfo",
+        "testing"
+      ],
+      "notes": "phpSysInfo diagnostic interface exposing operating system, hardware, processes, and server information.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    }
+  ]
+}

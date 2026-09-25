@@ -1,0 +1,443 @@
+{
+  "schema_version": 1,
+  "category": {
+    "id": "backup-and-legacy-deployment-directories",
+    "name": "Backup and Legacy Deployment Directories",
+    "short_name": "Backup and Legacy Deployment Directories",
+    "description": "Detection rules for Backup and Legacy Deployment Directories."
+  },
+  "rules": [
+    {
+      "id": "backup-and-legacy-deployment-directories-backup-path",
+      "name": "Backup Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/backup/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "medium",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "backup",
+        "generic",
+        "sensitive-path"
+      ],
+      "notes": "Generic backup directory that may expose archived application files or source code.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "backup-and-legacy-deployment-directories-backups-path",
+      "name": "Backups Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/backups/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "medium",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "backup",
+        "generic",
+        "sensitive-path"
+      ],
+      "notes": "Generic backup directory containing archived application data or deployments.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "backup-and-legacy-deployment-directories-db-backup-path",
+      "name": "Db Backup Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/db_backup/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "medium",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "backup",
+        "generic",
+        "sensitive-path"
+      ],
+      "notes": "Database backup directory that may expose production database dumps.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "backup-and-legacy-deployment-directories-database-backup-path",
+      "name": "Database Backup Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/database_backup/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "medium",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "backup",
+        "generic",
+        "sensitive-path"
+      ],
+      "notes": "Database backup directory containing exported databases.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "backup-and-legacy-deployment-directories-site-backup-path",
+      "name": "Site Backup Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/site-backup/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "medium",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "backup",
+        "generic",
+        "sensitive-path"
+      ],
+      "notes": "Website backup directory containing archived site files.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "backup-and-legacy-deployment-directories-old-site-path",
+      "name": "Old Site Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/old-site/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "backup",
+        "generic",
+        "sensitive-path"
+      ],
+      "notes": "Legacy website deployment that may expose outdated and vulnerable application versions.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "backup-and-legacy-deployment-directories-old-path",
+      "name": "Old Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/old/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "backup",
+        "generic",
+        "sensitive-path"
+      ],
+      "notes": "Generic previous-version directory. Broad match requiring review.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "backup-and-legacy-deployment-directories-staging-backup-path",
+      "name": "Backup Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/staging/backup/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "medium",
+        "false_positive_risk": "medium"
+      },
+      "action": {
+        "recommended": "log"
+      },
+      "applicability": {
+        "platforms": [
+          "generic"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "backup",
+        "generic",
+        "sensitive-path"
+      ],
+      "notes": "Backup directory within a staging deployment.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    }
+  ]
+}

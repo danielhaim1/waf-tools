@@ -1,0 +1,455 @@
+{
+  "schema_version": 1,
+  "category": {
+    "id": "administrative-interfaces-and-installation-endpoints",
+    "name": "Administrative Interfaces and Installation Endpoints",
+    "short_name": "Administrative Interfaces and Installation Endpoints",
+    "description": "Detection rules for Administrative Interfaces and Installation Endpoints."
+  },
+  "rules": [
+    {
+      "id": "admin-wordpress-xmlrpc",
+      "name": "WordPress XML-RPC Endpoint",
+      "detection": {
+        "location": "path",
+        "match": "exact",
+        "pattern": "/xmlrpc.php",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "eq"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "wordpress"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "wordpress"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "admin-endpoint",
+        "wordpress"
+      ],
+      "notes": "WordPress XML-RPC endpoint frequently targeted for brute-force, pingback abuse, and amplification attacks.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "admin-wordpress-setup-config",
+      "name": "WordPress Setup Config",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/wp-admin/setup-config.php",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "wordpress"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "wordpress"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "admin-endpoint",
+        "wordpress"
+      ],
+      "notes": "WordPress setup wizard should never be accessible after installation.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "admin-wordpress-install",
+      "name": "WordPress Install Endpoint",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/wp-admin/install.php",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "wordpress"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "wordpress"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "admin-endpoint",
+        "wordpress"
+      ],
+      "notes": "WordPress installer endpoint indicating an incomplete or vulnerable installation.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "admin-phpmyadmin",
+      "name": "phpMyAdmin Endpoint",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/phpmyadmin",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "phpmyadmin"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "admin-endpoint",
+        "php",
+        "phpmyadmin"
+      ],
+      "notes": "phpMyAdmin administration interface commonly targeted by automated attacks.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "admin-adminer",
+      "name": "Adminer Endpoint",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/adminer.php",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "adminer"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "admin-endpoint",
+        "adminer",
+        "generic"
+      ],
+      "notes": "Adminer database management interface.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "admin-adminer-directory",
+      "name": "Adminer Directory",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/adminer/",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "adminer"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "admin-endpoint",
+        "adminer",
+        "generic"
+      ],
+      "notes": "Adminer installation directory.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "admin-wordpress-debug-log",
+      "name": "WordPress Debug Log",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/wp-content/debug.log",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "wordpress"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "wordpress"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "admin-endpoint",
+        "wordpress"
+      ],
+      "notes": "Exposed WordPress debug log containing application errors or sensitive information.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "admin-fancyupload",
+      "name": "FancyUpload",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": "/fancyupload",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "fancyupload"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "generic"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-200"
+        ]
+      },
+      "tags": [
+        "admin-endpoint",
+        "fancyupload",
+        "generic"
+      ],
+      "notes": "Legacy upload component commonly targeted by automated vulnerability scanners.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    }
+  ]
+}

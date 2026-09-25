@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "category": {
+    "id": "legacy-php-artifacts",
+    "name": "Legacy PHP Artifacts",
+    "short_name": "Legacy PHP Artifacts",
+    "description": "Detection rules for Legacy PHP Artifacts."
+  },
+  "rules": [
+    {
+      "id": "legacy-php-artifacts-php-phtml-path",
+      "name": "PHP PHTML File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".phtml",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "php"
+      ],
+      "notes": "Legacy PHP file extension commonly targeted during reconnaissance and exploitation.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "legacy-php-artifacts-php-phar-path",
+      "name": "PHP PHAR File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".phar",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "php"
+      ],
+      "notes": "PHP Archive file. Frequently targeted due to PHAR deserialization vulnerabilities.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "legacy-php-artifacts-php-php5-path",
+      "name": "PHP PHP5 File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".php5",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "php"
+      ],
+      "notes": "Legacy PHP file extension associated with older PHP deployments.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "legacy-php-artifacts-php-php7-path",
+      "name": "PHP PHP7 File",
+      "detection": {
+        "location": "path",
+        "match": "contains",
+        "pattern": ".php7",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.path",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "medium",
+        "confidence": "medium",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": []
+      },
+      "tags": [
+        "php"
+      ],
+      "notes": "PHP version-specific file extension occasionally found in legacy deployments.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    }
+  ]
+}

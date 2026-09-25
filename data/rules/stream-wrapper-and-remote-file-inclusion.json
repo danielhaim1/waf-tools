@@ -1,0 +1,349 @@
+{
+  "schema_version": 1,
+  "category": {
+    "id": "stream-wrapper-and-remote-file-inclusion",
+    "name": "Stream Wrapper and Remote File Inclusion",
+    "short_name": "Stream Wrapper and Remote File Inclusion",
+    "description": "Detection rules for Stream Wrapper and Remote File Inclusion."
+  },
+  "rules": [
+    {
+      "id": "stream-file-wrapper",
+      "name": "PHP File Wrapper",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "file://",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "high",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "generic",
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-94",
+          "CWE-98"
+        ]
+      },
+      "tags": [
+        "file-inclusion",
+        "generic",
+        "php"
+      ],
+      "notes": "Local file URI wrapper commonly used in Local File Inclusion (LFI) and arbitrary file read attacks.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "stream-php-wrapper",
+      "name": "PHP Stream Wrapper",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "php://",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-94",
+          "CWE-98"
+        ]
+      },
+      "tags": [
+        "file-inclusion",
+        "php"
+      ],
+      "notes": "PHP stream wrapper frequently abused for file disclosure, filter bypasses, and remote code execution.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "stream-data-wrapper",
+      "name": "PHP Data Wrapper",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "data://",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-94",
+          "CWE-98"
+        ]
+      },
+      "tags": [
+        "file-inclusion",
+        "php"
+      ],
+      "notes": "PHP Data stream wrapper used to inject Base64-encoded payloads during Remote File Inclusion (RFI) and code execution attacks.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "stream-expect-wrapper",
+      "name": "PHP Expect Wrapper",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "expect://",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-94",
+          "CWE-98"
+        ]
+      },
+      "tags": [
+        "file-inclusion",
+        "php"
+      ],
+      "notes": "PHP Expect stream wrapper capable of executing operating system commands when enabled.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "stream-auto-prepend-file",
+      "name": "PHP auto_prepend_file",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "auto_prepend_file",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-94",
+          "CWE-98"
+        ]
+      },
+      "tags": [
+        "file-inclusion",
+        "php"
+      ],
+      "notes": "PHP configuration directive abused to force execution of attacker-controlled PHP code before every request.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    },
+    {
+      "id": "stream-allow-url-include",
+      "name": "PHP allow_url_include",
+      "detection": {
+        "location": "query",
+        "match": "contains",
+        "pattern": "allow_url_include",
+        "case_sensitive": true,
+        "decoding": {
+          "url_decode": false,
+          "html_entity_decode": false
+        }
+      },
+      "implementations": {
+        "cloudflare": {
+          "field": "http.request.uri.query",
+          "operator": "contains"
+        }
+      },
+      "risk": {
+        "severity": "critical",
+        "confidence": "high",
+        "false_positive_risk": "low"
+      },
+      "action": {
+        "recommended": "block"
+      },
+      "applicability": {
+        "platforms": [
+          "php"
+        ],
+        "operating_systems": [
+          "any"
+        ],
+        "web_stacks": [
+          "php"
+        ],
+        "requires": []
+      },
+      "references": {
+        "cves": [],
+        "cwes": [
+          "CWE-94",
+          "CWE-98"
+        ]
+      },
+      "tags": [
+        "file-inclusion",
+        "php"
+      ],
+      "notes": "PHP configuration directive enabling Remote File Inclusion (RFI) through remote URLs.",
+      "ui": {
+        "default_selected": false,
+        "recommended": false
+      }
+    }
+  ]
+}
