@@ -43,7 +43,7 @@ Existing rules without fixtures are a known backlog. PR checks require fixtures 
 - `npm test`: checks catalog invariants, selection behavior, detection examples, exporter output/escaping, unsupported cases, and publication boundaries.
 - `npm run lint`: checks JavaScript for common errors.
 - `npm run build`: creates the public site and catalog under `dist/`.
-- `npm run test:build`: checks version/checksum consistency and that referenced assets and module imports exist.
+- `npm run test:build`: checks version/checksum consistency, deployment URL metadata, referenced assets, and ES5 bundle syntax.
 - `npm run check`: runs all of the above in order.
 
 CI runs on Node 22 and 24. Counts are derived from the catalog; adding a valid rule does not require changing a baseline count.
@@ -54,7 +54,9 @@ For UI changes, check a narrow mobile viewport, keyboard-only navigation, Show m
 
 ## Review and publication
 
-Maintainers review changes before merging. Contribution acceptance does not automatically deploy the site.
+Maintainers review changes before merging. Pull requests run checks on Node 22 and 24.
+Once GitHub Pages is configured, pushes to `main` also check, build, and deploy `dist/`.
+See the [build and Pages setup](README.md#build-and-github-pages) for configuration and site visibility.
 
 Licensing is pending. Resolve the code and data licenses before inviting external contributions or publishing the repository. Never commit material that must remain private: the build allowlist does not hide files in a public Git repository.
 

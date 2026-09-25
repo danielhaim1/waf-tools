@@ -4,6 +4,7 @@ import { readFile, readdir, access } from 'node:fs/promises';
 import { createModel } from '../src/assets/js/catalog.js';
 import { EXPORTERS } from '../src/assets/js/exporters.js';
 import { catalogHash } from './public-catalog.mjs';
+import { siteUrl } from './site-url.mjs';
 const root = new URL('../dist/', import.meta.url);
 const read = (path) => readFile(new URL(path, root), 'utf8');
 const pkg = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'));
@@ -18,6 +19,21 @@ for (const provider of Object.values(EXPORTERS))
 assert.deepEqual(await readdir(new URL('assets/js/', root)), ['app.js']);
 parse(await read('assets/js/app.js'), { ecmaVersion: 5, sourceType: 'script' });
 const html = await read('index.html');
+const decodeAttribute = (value) =>
+  value.replace(
+    /&(?:amp|quot|#39|lt|gt);/g,
+    (entity) => ({ '&amp;': '&', '&quot;': '"', '&#39;': "'", '&lt;': '<', '&gt;': '>' })[entity]
+  );
+for (const pattern of [
+  /<meta name="url" content="([^"]+)"/,
+  /<link rel="home" href="([^"]+)"/,
+  /<link rel="canonical" href="([^"]+)"/,
+]) {
+  const match = html.match(pattern);
+  assert.ok(match, `Missing site URL metadata: ${pattern}`);
+  assert.equal(decodeAttribute(match[1]), siteUrl(process.env.SITE_URL));
+}
+assert.ok(!html.includes('example.com'));
 for (const match of html.matchAll(/(?:src|href)="(\.\/[^"#]+)"/g))
   await access(new URL(match[1], root));
 assert.ok(html.includes('<script defer src="./assets/js/app.js"></script>'));

@@ -26,10 +26,6 @@ The new server and cloud exporters are experimental and have not been validated 
 
 Compatibility is checked before generation. If some selected rules cannot be exported, you can explicitly export the compatible rules and download a report of the exclusions. Review the output before deploying—what makes sense for one application may block legitimate traffic on another.
 
-## Routers and network firewalls
-
-There are no native exports for ASUS routers, OpenWrt, pfSense, or other router firewalls yet. This collection matches HTTP request content; router blocklists based on IP addresses, ports, or domains need different source data and exporters. Plain-text output is an audit list, not a router import file.
-
 ## Contributing
 
 New rules, corrections, better descriptions, and exporters are welcome. If you're adding or changing a rule, explain what it catches and where it might cause false positives.
@@ -37,6 +33,13 @@ New rules, corrections, better descriptions, and exporters are welcome. If you'r
 To run locally, use Node.js 22 or newer and run `npm start` from the project directory, then open [localhost:3000](http://localhost:3000).
 
 See [Contributing](CONTRIBUTING.md) for setup, detection examples, and tests, and [Maintaining the ruleset](data/README.md) for the rule format. Run `npm ci` and `npm run check` before submitting changes.
+
+## Build and GitHub Pages
+
+Run `npm ci` followed by `npm run check` to validate, test, and build the site into `dist/`.
+Node 24 is the default in `.nvmrc`; CI checks Node 22 and 24.
+
+The default site URL is [danielhaim1.github.io/waf-tools](https://danielhaim1.github.io/waf-tools/).
 
 ## Versions
 

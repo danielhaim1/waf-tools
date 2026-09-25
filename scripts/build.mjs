@@ -3,12 +3,17 @@ import { basename, extname } from 'node:path';
 import { readCatalog } from './catalog.mjs';
 import { bundleJavaScript } from './bundle.mjs';
 import { publicCatalog, catalogHash } from './public-catalog.mjs';
+import { renderSiteHtml } from './site-url.mjs';
 const output = new URL('../dist/', import.meta.url);
 const catalog = publicCatalog(await readCatalog());
 const { version } = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'));
+const html = renderSiteHtml(
+  await readFile(new URL('../src/index.html', import.meta.url), 'utf8'),
+  process.env.SITE_URL
+);
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
-await cp(new URL('../src/index.html', import.meta.url), new URL('index.html', output));
+await writeFile(new URL('index.html', output), html);
 for (const [directory, extensions] of Object.entries({
   css: ['.css'],
   logos: ['.svg', '.png'],
