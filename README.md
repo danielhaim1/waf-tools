@@ -26,12 +26,6 @@ Generated rules require manual review. **Do not automatically deploy them.** Rev
 | JSON             | Selected pattern strings only, without catalog metadata.                                        |
 | CSV, plain text  | Rule data for integrations, security reviews, and auditing.                                     |
 
-### Export limitations
-
-- **Experimental exporters:** NGINX, ModSecurity, HAProxy, Caddy, AWS WAF, and Azure Front Door exports have not yet been tested on their target platforms.
-- **Format support:** Some formats cannot represent every rule or action. Review compatibility results and exclusions before using the output.
-- **Validation scope:** Compatibility checks confirm format support. They do not establish that a ruleset is safe or effective for your application.
-
 ## Contributing
 
 New rules, corrections, better descriptions, and exporters are welcome. If you're adding or changing a rule, explain what it catches and where it might cause false positives.
