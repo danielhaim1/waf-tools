@@ -2,11 +2,15 @@
 
 WAF Tools is a ruleset generator with CWE references, exploit indicators, and custom detection patterns for security reviews and auditing. It covers exposed configuration files, SQL injection, path traversal, and known exploit patterns.
 
-Pick the rules that make sense for your application, inspect what they match, and generate the output. You can start with a preset or build your own selection, with search and filters to narrow things down.
+## Using WAF Tools
 
-## Using it
+Generated rules require manual review. **Do not automatically deploy them.** Review and test each ruleset in your environment before use, as rules may block legitimate traffic.
 
-Choose an **export format**, select your rules, and generate the output. Copy the result or download it. Presets help you start with a selection; each rule includes its pattern and risk information.
+1. **Choose a format** for your target platform or preferred download type.
+2. **Select rules** using a preset or search and filters. Inspect each rule's pattern and risk information.
+3. **Check compatibility** and review any unsupported rules. You can export the compatible selection and download a report of exclusions.
+4. **Generate and save** the output by copying it or downloading a file.
+5. **Review, adjust, and test** the generated rules before applying them to your application.
 
 ## Export formats
 
@@ -22,11 +26,11 @@ Choose an **export format**, select your rules, and generate the output. Copy th
 | JSON             | Selected pattern strings only, without catalog metadata.                                        |
 | CSV, plain text  | Rule data for integrations, security reviews, and auditing.                                     |
 
-WAF Tools generates rules and configuration files for manual review. **Do not automatically deploy generated rules.** Review and test them in your environment before use.
+### Export limitations
 
-- Rules may block legitimate traffic and need adjustment for your application.
-- Compatibility checks identify unsupported rules. You can export the compatible rules and download a report of exclusions.
-- Exports for NGINX, ModSecurity, HAProxy, Caddy, AWS WAF, and Azure Front Door are experimental and have not yet been tested on their target platforms.
+- **Experimental exporters:** NGINX, ModSecurity, HAProxy, Caddy, AWS WAF, and Azure Front Door exports have not yet been tested on their target platforms.
+- **Format support:** Some formats cannot represent every rule or action. Review compatibility results and exclusions before using the output.
+- **Validation scope:** Compatibility checks confirm format support. They do not establish that a ruleset is safe or effective for your application.
 
 ## Contributing
 
