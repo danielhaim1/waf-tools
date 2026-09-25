@@ -22,9 +22,11 @@ Choose an **export format**, select your rules, and generate the output. Copy th
 | JSON             | Selected pattern strings only, without catalog metadata.                                        |
 | CSV, plain text  | Rule data for integrations, security reviews, and auditing.                                     |
 
-The new server and cloud exporters are experimental and have not been validated against their target runtimes. These are configuration exports, not automatic deployments.
+WAF Tools generates rules and configuration files for manual review. **Do not automatically deploy generated rules.** Review and test them in your environment before use.
 
-Compatibility is checked before generation. If some selected rules cannot be exported, you can explicitly export the compatible rules and download a report of the exclusions. Review the output before deploying—what makes sense for one application may block legitimate traffic on another.
+- Rules may block legitimate traffic and need adjustment for your application.
+- Compatibility checks identify unsupported rules. You can export the compatible rules and download a report of exclusions.
+- Exports for NGINX, ModSecurity, HAProxy, Caddy, AWS WAF, and Azure Front Door are experimental and have not yet been tested on their target platforms.
 
 ## Contributing
 
