@@ -1,6 +1,6 @@
-# WAF Tools
+# WAF Tools - Ruleset Generator
 
-A collection of WAF rules and a tool for browsing, selecting, and exporting them. It covers things like exposed configuration files, SQL injection, path traversal, and known exploit patterns.
+WAF Tools is a ruleset generator with CWE references, exploit indicators, and custom detection patterns for security reviews and auditing. It covers exposed configuration files, SQL injection, path traversal, and known exploit patterns.
 
 Pick the rules that make sense for your application, inspect what they match, and generate the output. You can start with a preset or build your own selection, with search and filters to narrow things down.
 

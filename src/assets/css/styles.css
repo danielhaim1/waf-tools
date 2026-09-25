@@ -172,7 +172,9 @@ input[type='checkbox'] {
 }
 
 .page-header .header-support {
+  max-width: fit-content;
   font-size: 0.9rem;
+  text-wrap: auto;
 }
 
 .toolbar {
